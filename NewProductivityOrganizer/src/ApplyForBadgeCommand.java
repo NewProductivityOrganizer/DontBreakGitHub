@@ -1,73 +1,67 @@
 /**
  * this class defines the process for applying for a badge
- * A student worker sends in a list of all the badges he/she is applying for 
+ * A student worker selects a badge number that he/she wants to apply for
+ * It is sent into this class and has its status updated to In Progress 
  * */
 public class ApplyForBadgeCommand implements BadgeCommand {
 
-	//private ArrayList<Badge> badgeList;
-	//private String studentWorkerName;
-	// private String status = "";
-	 //private int iD;
+
 	 Badge badge;
 	 private  final String BADGE_IN_PROGRESS = "In Progress";
+	 private final String ACTION_CANT_BE_PERFORMED = "Badge cannot be In progress because it does not have an empty status";
 	
-
+/**
+ * @param badgeRequested is the badge received that is to be processed for approval
+ * */
 	public ApplyForBadgeCommand(Badge badgeRequested) {
 		this.badge = badgeRequested;
 	}
 
+	/**this method is meant to check the badge status for null
+	 * if true, meaning it has no request associated with it, then it is assigned to In progress*/
 	@Override
 	public void executeCommand() {
 		
-		/*for(Badge badges: badgeList) {
-			
-			if(badges!= null) {
-			   
-				updateBadgeStatus(badges);
-		 
-				//In process == status
-				//method that deals with database
-				
-			   //change applicant user ID at the same time
-			}
-		}*/	
+		if(isNull()) {
+			badge.setBadgeStatus(BADGE_IN_PROGRESS);	
+		}
+		
+		System.out.println(ACTION_CANT_BE_PERFORMED);
 	}
 	
-
 	@Override
-	public void undoCommnd() {
+	public void undoCommand() {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	/**
-	 * method meant to simulate what changing a badge status would look like
-	 * @param badge is the badge received
-	 * */
-   public void updateBadgeStatus() {
-	   
-	   badge.setBadgeStatus(BADGE_IN_PROGRESS);
-   }
-   
-   public boolean statusUpdate() {
-	   boolean result = false;
-	    if(badge.getBadgeStatus().equalsIgnoreCase("In Progress")) {
+
+   public boolean isNull() {
+	   boolean result = false;   
+	  
+	   if(badge.getBadgeStatus() != null) {
 	    	 result = true;
 	    }
 	   return result;
    }
    
+   //method to print a badge and its status
 	public String toString() {
+		String toReturn="";
+		toReturn +="Badge Name:"+ badge.getBadgeName();
+		toReturn += " \n"+"Badge Description: "+ badge.getBadgeDescription();
+		toReturn += "\n"+" Badge Status:"+ badge.getBadgeStatus();
 		
-		return "Badge Name:"+ badge.getBadgeName()+ " \n"+"Badge Description: "+ badge.getBadgeDescription()+ "\n"+" Badge Status:"+ badge.getBadgeStatus();
+		return toReturn;//"Badge Name:"+ badge.getBadgeName()+ " \n"+"Badge Description: "+ badge.getBadgeDescription()+ "\n"+" Badge Status:"+ badge.getBadgeStatus();
 	}
 
-
-	@Override
+/**
+ * better to pass in constructor so that can set the badge and then whn called in other methods don' need a getter*/
+	
+	/*@Override
 	public void executeCommand(Badge badge) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 
 	

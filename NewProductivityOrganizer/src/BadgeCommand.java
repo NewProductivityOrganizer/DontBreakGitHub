@@ -3,10 +3,10 @@
  **/
 public interface BadgeCommand {
 	
-	public void executeCommand(Badge badge);
+	//public void executeCommand(Badge badge);
 	
 	
-	public void undoCommnd();
+	public void undoCommand();
 
 
 	void executeCommand();
