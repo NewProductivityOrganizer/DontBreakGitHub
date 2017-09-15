@@ -17,6 +17,7 @@ public class CreateBadgeCommand implements BadgeCommand{
 
 	@Override
 	public void executeCommand(Badge badge) {
+		/*
 		try(
 			Connection conn = DriverManager.getConnection("jbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root");
 			Statement stmt = conn.createStatement();
@@ -26,12 +27,20 @@ public class CreateBadgeCommand implements BadgeCommand{
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		*/
 			
 	}
 
-	@Override
-	public void undoCommnd() {
 
+	@Override
+	public void undoCommand() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void executeCommand() {
+		// TODO Auto-generated method stub
 		
 	}
 

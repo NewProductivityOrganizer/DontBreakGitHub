@@ -13,9 +13,10 @@ public class Badge {
 	private int applicantApproverUserId;
 	private int badgeId;
 
-	public Badge(String badgeName, String badgeDescription) {
+	public Badge(String badgeName, String badgeDescription, String badgeStatus) {
 		this.badgeName = badgeName;
 		this.badgeDescription = badgeDescription;
+		this.badgeStatus = badgeStatus;
 	}
 	
 	public String getBadgeName() {
