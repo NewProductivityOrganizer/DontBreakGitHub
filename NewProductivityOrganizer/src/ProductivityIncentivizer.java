@@ -125,7 +125,7 @@ public class ProductivityIncentivizer {
 		int selection = 1;
 		while (!valid)
 		{
-			System.out.println("\nChoose one to approve: ");
+			System.out.println("\nChoose the badge to approve: ");
 			System.out.print("> ");
 			try {
 				selection = badgeChoice.nextInt();
