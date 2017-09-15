@@ -197,7 +197,7 @@ public class ProductivityIncentivizer {
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
-			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription WHERE BadgeStatus = 'blabla'";
+			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'blabla'";
 			ResultSet newBadgeInProcess = stmt.executeQuery(getNewBadgeInProcess);
 			List<StudentWorker> topTenStudentWorkers = new ArrayList<StudentWorker>();
 			while (newBadgeInProcess.next()){
