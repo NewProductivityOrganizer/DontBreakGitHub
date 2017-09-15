@@ -31,7 +31,7 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 		if(isNull()) {
 			badge.setBadgeStatus(BADGE_IN_PROGRESS);
 			toReturn+= "Badge Name: "+ badge.getBadgeName();
-			toReturn+= "\n"+ "Badge Description "+ badge.getBadgeDescription();
+			toReturn+= "\n"+ "Badge Description: "+ badge.getBadgeDescription();
 			toReturn+= "\n"+ "Badge Status: "+ badge.getBadgeStatus();
 			return toReturn;
 		} else {
