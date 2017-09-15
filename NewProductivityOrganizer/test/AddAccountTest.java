@@ -1,7 +1,10 @@
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
+/**
+ * tests for valid and invalid account creation
+ * @author sophiemittelstadt
+ */
 public class AddAccountTest {
 	
 	@Test 
