@@ -1,4 +1,4 @@
-import java.sql.Connection;
+/*import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * Command used when student worker wants to create a badge
  */
-public class CreateBadgeCommand implements BadgeCommand{
+/*public class CreateBadgeCommand implements BadgeCommand{
 	public static final String PORT_NUMBER = "8889";
 
 	public CreateBadgeCommand() {
@@ -29,11 +29,11 @@ public class CreateBadgeCommand implements BadgeCommand{
 		}
 		*/
 			
-	}
+	//}
 
 
-	@Override
-	public void undoCommand() {
+	//@Override
+	/*public void undoCommand() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -44,4 +44,4 @@ public class CreateBadgeCommand implements BadgeCommand{
 		
 	}
 
-}
+}*/

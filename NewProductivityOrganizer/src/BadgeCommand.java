@@ -5,9 +5,9 @@ public interface BadgeCommand {
 	
 	public void undoCommand();
 
-	void executeCommand();
+	public String executeCommand();
 
-	void executeCommand(Badge badge);
+	//void executeCommand(Badge badge);
 
 
 }

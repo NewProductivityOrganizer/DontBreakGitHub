@@ -13,25 +13,31 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 	String badgeName;
 	String badgeDescription;
 	String badgeStatus;
+	String toReturn = "";
 	/**
 	 * @param badgeRequested is the badge received that is to be processed for approval
 	 * */
 	public ApplyForBadgeCommand(Badge badgeRequested) {
-		/*this.badgeName = badgeRequested.getBadgeName();
+		this.badgeName = badgeRequested.getBadgeName();
 		this.badgeDescription = badgeRequested.getBadgeDescription();
-		this.badgeStatus = badgeRequested.getBadgeStatus();*/
-		this.badge = badgeRequested;
+		this.badgeStatus = badgeRequested.getBadgeStatus();
+		badge  = new Badge(badgeName,badgeDescription,badgeStatus);
 	}
 
 	/**this method is meant to check the badge status for null
 	 * if true, meaning it has no request associated with it, then it is assigned to In progress*/
 	@Override
-	public void executeCommand() {
+	public String executeCommand() {
 		if(isNull()) {
-			badge.setBadgeStatus(BADGE_IN_PROGRESS); 
-		} 
-		System.out.println(ACTION_CANT_BE_PERFORMED);
-		System.out.println("WORK"+ badgeDescription);
+			badge.setBadgeStatus(BADGE_IN_PROGRESS);
+			toReturn+= "Badge Name: "+ badge.getBadgeName();
+			toReturn+= "\n"+ "Badge Description "+ badge.getBadgeDescription();
+			toReturn+= "\n"+ "Badge Status: "+ badge.getBadgeStatus();
+			return toReturn;
+		} else {
+		return ACTION_CANT_BE_PERFORMED;
+	
+		}
 	}
 	@Override
 	public void undoCommand() {
@@ -50,21 +56,12 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 		return result;
 	}
 
-	/**method to print a badge and its status
-	 * 
-	 * */
-	public String toString() {
-		String toReturn="";
-		toReturn +="Badge Name:"+ badge.getBadgeName();
-		toReturn += " \n"+"Badge Description: "+ badge.getBadgeDescription();
-		toReturn += "\n"+" Badge Status:"+ badge.getBadgeStatus();
-		return toReturn;
-	}
+	
 
-	@Override
+	/*@Override
 	public void executeCommand(Badge badge) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 }

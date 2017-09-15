@@ -38,7 +38,7 @@ public class ProductivityIncentivizer {
 	private static int playerMenu()
 	{
 		boolean valid = false;
-		Scanner in = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		int selection = 1;
 		while (!valid)
 		{
@@ -52,9 +52,9 @@ public class ProductivityIncentivizer {
 			System.out.println("5: New is better -- Upgrade the OS on a computer");
 			System.out.print("> ");
 			try {
-				selection = in.nextInt();
+				selection = input.nextInt();
 
-				in.nextLine();
+				input.nextLine();
 				if ((selection >= 0) && (selection <= 5))
 				{
 					valid = true;
@@ -64,7 +64,7 @@ public class ProductivityIncentivizer {
 			catch(InputMismatchException ex)
 			{
 				//still need to gobble up the end of line
-				in.nextLine();
+				input.nextLine();
 			}
 			if (!valid)
 			{
@@ -103,36 +103,44 @@ public class ProductivityIncentivizer {
 	*/
 	public  void sendBadgeApplication() {
 		initializeBadges(); // initialize simulated badge values
+		String display = "";
 		int badgeSelection = playerMenu();
 		switch(badgeSelection) {
 		case UPDATION :
 			applyForBadge = new ApplyForBadgeCommand(badges.get(UPDATION));
-			applyForBadge.executeCommand();
-			applyForBadge.toString();
+		
+			display = 	applyForBadge.executeCommand();
+			System.out.println(display);
 			break;
 		case THE_XANDER:
 			applyForBadge = new ApplyForBadgeCommand(badges.get(THE_XANDER));
 			applyForBadge.executeCommand();
+			display = 	applyForBadge.executeCommand();
+			System.out.println(display);
 			break;
 		case HUMANITARIAN:
 			applyForBadge = new ApplyForBadgeCommand(badges.get(HUMANITARIAN));
 			applyForBadge.executeCommand();
-			applyForBadge.toString();
+			display = 	applyForBadge.executeCommand();
+			System.out.println(display);
 			break;
 		case SEVEN_LEAGUE_BOOTS : 
 			applyForBadge = new ApplyForBadgeCommand(badges.get(SEVEN_LEAGUE_BOOTS));
 			applyForBadge.executeCommand();
-			applyForBadge.toString();
+			display = 	applyForBadge.executeCommand();
+			System.out.println(display);
 			break;
 		case  ITS_MANAGER : 
 			applyForBadge = new ApplyForBadgeCommand(badges.get(ITS_MANAGER));
 			applyForBadge.executeCommand();
-			applyForBadge.toString();
+			display = 	applyForBadge.executeCommand();
+			System.out.println(display);
 			break;
 		case  NEW_IS_BETTER: 
 			applyForBadge = new ApplyForBadgeCommand(badges.get(NEW_IS_BETTER));
 			applyForBadge.executeCommand();
-			applyForBadge.toString();
+			display = 	applyForBadge.executeCommand();
+			System.out.println(display);
 			break;
 		}
 	}
@@ -164,7 +172,7 @@ public class ProductivityIncentivizer {
 				
 		}
 		addAccount(employeeName, employeeType, supervisorCode);
-		in.close();
+		//in.close();
 	}
 	
 	/**
@@ -466,7 +474,7 @@ public class ProductivityIncentivizer {
 		ProductivityIncentivizer runProgram = new ProductivityIncentivizer();
 		runProgram.operation();
 		//commented out because it's not completely working right now
-		//runProgram.sendBadgeApplication();
+		runProgram.sendBadgeApplication();
 	}
 
 }
