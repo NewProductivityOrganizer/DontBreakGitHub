@@ -472,6 +472,7 @@ public class ProductivityIncentivizer {
 
 	public static void main(String[] args) {
 		ProductivityIncentivizer runProgram = new ProductivityIncentivizer();
+		runProgram.ApproveNewBadge();
 		runProgram.operation();
 		//commented out because it's not completely working right now
 		runProgram.sendBadgeApplication();
