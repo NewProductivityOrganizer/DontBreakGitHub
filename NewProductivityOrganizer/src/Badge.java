@@ -14,10 +14,9 @@ public class Badge {
 	private int badgeId;
 
 
-	public Badge(String badgeName, String badgeDescription, int creatorUserId, String badgeStatus) {
+	public Badge(String badgeName, String badgeDescription,String badgeStatus) {
 		this.badgeName = badgeName;
 		this.badgeDescription = badgeDescription;
-		this.creatorUserId = creatorUserId;
 		this.badgeStatus = badgeStatus;
 		
 	}
@@ -50,13 +49,13 @@ public class Badge {
 		return applicantUserId;
 	}
 
-	public void setApplicantUserId(int applicantUserId) {
+	/*public void setApplicantUserId(int applicantUserId) {
 		this.applicantUserId = applicantUserId;
 	}
 
 	public int getApplicantApproverUserId() {
 		return applicantApproverUserId;
-	}
+	}*/
 
 	public void setApplicantApproverUserId(int applicantApproverUserId) {
 		this.applicantApproverUserId = applicantApproverUserId;

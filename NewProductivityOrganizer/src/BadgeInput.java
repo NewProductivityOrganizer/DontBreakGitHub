@@ -23,28 +23,7 @@ public class BadgeInput {
     
 	
 
-	/*public BadgeInput() {
-	   /*
-		     Badge updation = new Badge("Updation","Upgrade firmware on a printer",101,null);
-		     badges.add(updation);
-		     
-		     Badge theXander = new Badge("theXander","develop a mobile app for CC",102,null);
-		     
-		     badges.add(theXander);
-		     Badge humanitarian = new Badge("Humanitarian","develop a set of cards for ITS: Cards Against Humanity",103,null);
-		     
-		     badges.add(humanitarian);
-		     Badge sevenLeagueBoots = new Badge("Seven league boots","Help someone in facilities or HVAC",104,null);
-		     
-		      badges.add(sevenLeagueBoots);
-		     Badge itsManager = new Badge("ITS Manager","Talk to a sales vendor for at least 5 minutes",105,null);
-		     badges.add(itsManager);
-		     Badge newIsBetter = new Badge("New is Better","Upgrade the OS on a computer",106,null);
-		     badges.add(newIsBetter);*/
-		     
-		   
-		     
-	//}	     
+	
 	
 	/**
 	 * This player menu allows a user to choose from a selection of options and then a decision is amde based off of that
@@ -96,29 +75,30 @@ public class BadgeInput {
 	 */
 	public void initializeBadges() {
 		
-	    	Badge updation = new Badge("Updation","Upgrade firmware on a printer",101,null);
+	    	Badge updation = new Badge("Updation","Upgrade firmware on a printer",null);
 	     badges.add(updation);
 	     
-	     Badge theXander = new Badge("theXander","develop a mobile app for CC",102,null);
+	     Badge theXander = new Badge("theXander","develop a mobile app for CC",null);
 	     
 	     badges.add(theXander);
-	     Badge humanitarian = new Badge("Humanitarian","develop a set of cards for ITS: Cards Against Humanity",103,null);
+	     Badge humanitarian = new Badge("Humanitarian","develop a set of cards for ITS: Cards Against Humanity",null);
 	     
 	  
 	     
 	     badges.add(humanitarian);
-	     Badge sevenLeagueBoots = new Badge("Seven league boots","Help someone in facilities or HVAC",104,null);
+	     Badge sevenLeagueBoots = new Badge("Seven league boots","Help someone in facilities or HVAC",null);
 	     
 	      badges.add(sevenLeagueBoots);
-	     Badge itsManager = new Badge("ITS Manager","Talk to a sales vendor for at least 5 minutes",105,null);
+	     Badge itsManager = new Badge("ITS Manager","Talk to a sales vendor for at least 5 minutes",null);
 	     badges.add(itsManager);
-	     Badge newIsBetter = new Badge("New is Better","Upgrade the OS on a computer",106,null);
+	     Badge newIsBetter = new Badge("New is Better","Upgrade the OS on a computer",null);
 	     badges.add(newIsBetter);
 		
 	}
 	
 	/**
-	 * Method responsible for calling the executeCommand for the apply for badge command and returns results of that call
+	 * Method responsible for calling the executeCommand() for the apply for badge command and returns results of that call
+	 * 
 	 * */
 	 
 	

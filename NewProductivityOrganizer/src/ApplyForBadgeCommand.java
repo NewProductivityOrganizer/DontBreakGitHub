@@ -8,13 +8,22 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 
 	 Badge badge;
 	 private  final String BADGE_IN_PROGRESS = "In Progress";
-	 private final String ACTION_CANT_BE_PERFORMED = "Badge cannot be In progress because it does not have an empty status";
+	 private final String ACTION_CANT_BE_PERFORMED = "Badge cannot be In Progress because it does not have an empty status";
+	 String badgeName;
+	 String badgeDescription;
+	 String badgeStatus;
 	
 /**
  * @param badgeRequested is the badge received that is to be processed for approval
  * */
 	public ApplyForBadgeCommand(Badge badgeRequested) {
-		this.badge = badgeRequested;
+		
+		this.badgeName = badgeRequested.getBadgeName();
+		this.badgeDescription = badgeRequested.getBadgeDescription();
+		this.badgeStatus = badgeRequested.getBadgeStatus();
+		badge = new Badge(badgeName,badgeDescription,badgeStatus);
+	
+		
 	}
 
 	/**this method is meant to check the badge status for null
@@ -24,9 +33,11 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 		
 		if(isNull()) {
 			badge.setBadgeStatus(BADGE_IN_PROGRESS);	
-		}
+		} 
+	
+			System.out.println(ACTION_CANT_BE_PERFORMED);
+			System.out.println("WORK"+ badgeDescription);
 		
-		System.out.println(ACTION_CANT_BE_PERFORMED);
 	}
 	
 	@Override
@@ -35,34 +46,32 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 		
 	}
 
+	/**
+	 * Method that checks the badge status against against a null value and if they match then a boolean of true is sent back so that its status can be changed
+	 * */
    public boolean isNull() {
 	   boolean result = false;   
 	  
-	   if(badge.getBadgeStatus() != null) {
+	   if(badge.getBadgeStatus() == null) {
 	    	 result = true;
 	    }
 	   return result;
    }
    
-   //method to print a badge and its status
+   /**method to print a badge and its status
+    * 
+    * */
 	public String toString() {
 		String toReturn="";
 		toReturn +="Badge Name:"+ badge.getBadgeName();
 		toReturn += " \n"+"Badge Description: "+ badge.getBadgeDescription();
 		toReturn += "\n"+" Badge Status:"+ badge.getBadgeStatus();
 		
-		return toReturn;//"Badge Name:"+ badge.getBadgeName()+ " \n"+"Badge Description: "+ badge.getBadgeDescription()+ "\n"+" Badge Status:"+ badge.getBadgeStatus();
+		return toReturn;
 	}
 
-/**
- * better to pass in constructor so that can set the badge and then whn called in other methods don' need a getter*/
-	
-	/*@Override
-	public void executeCommand(Badge badge) {
-		// TODO Auto-generated method stub
-		
-	}*/
 
+	
 
 	
 
