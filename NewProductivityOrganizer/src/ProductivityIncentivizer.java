@@ -311,6 +311,16 @@ public class ProductivityIncentivizer {
 	 * @return badge selected
 	 */
 	public Badge DisplayNewBadgeInProcess() {
+		HashMap<Integer, Badge> badgeDictionary = getBadgeDictionary();
+		int badgeIndex = badgeDictionary.size();
+		int selection = getBadgeChoice(badgeIndex);
+		return badgeDictionary.get(selection);
+	}
+	/**
+	 * Method used to get all the unapproved new badge in the database and put them in a dictionary
+	 * @return dictionary of unapproved new badges
+	 */
+	public HashMap<Integer, Badge> getBadgeDictionary(){
 		HashMap<Integer, Badge> badgeDictionary = new HashMap<Integer, Badge>();
 		int badgeIndex = 0;
 		try (
@@ -337,6 +347,15 @@ public class ProductivityIncentivizer {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		return badgeDictionary;
+	}
+	
+	/**
+	 * taking user's choice of badge
+	 * @param size of badge dictionary
+	 * @return badge chosen
+	 */
+	public int getBadgeChoice(int badgeIndex) {
 		Scanner badgeChoice = new Scanner(System.in);
 		boolean valid = false;
 		int selection = 1;
@@ -364,8 +383,9 @@ public class ProductivityIncentivizer {
 				System.out.println("Invalid entry -- enter a number between 1 and "+ badgeIndex);
 			}
 		}
-		return badgeDictionary.get(selection);
+		return selection;
 	}
+	
 	/**
 	 * Approve student-create new badge and put it into System
 	 */
@@ -446,7 +466,7 @@ public class ProductivityIncentivizer {
 				System.out.println("Invalid entry -- enter 0");
 			}
 		}
-		StartMenu();
+		operation();
 	}
 	
 	/**
@@ -472,7 +492,7 @@ public class ProductivityIncentivizer {
 
 	public static void main(String[] args) {
 		ProductivityIncentivizer runProgram = new ProductivityIncentivizer();
-		runProgram.ApproveNewBadge();
+		//runProgram.ApproveNewBadge();
 		runProgram.operation();
 		//commented out because it's not completely working right now
 		runProgram.sendBadgeApplication();
