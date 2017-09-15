@@ -1,4 +1,6 @@
-
+/**
+ * Supervisor account is one of the classes within AccountFactory
+ */
 public class SupervisorAccount implements Account{
 
 	private String accountName;
@@ -7,6 +9,10 @@ public class SupervisorAccount implements Account{
 		
 	}
 	
+	/**
+	 * creates supervisor account
+	 * @param employeeName
+	 */
 	public void createAccount(String employeeName) {
 		accountName = employeeName;
 		System.out.println(employeeName);

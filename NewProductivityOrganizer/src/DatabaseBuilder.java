@@ -3,6 +3,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * DatabaseBuilder creates a database that stores everything
+ */
 public class DatabaseBuilder {
 	public static final String PORT_NUMBER = "8889";
 

@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -6,7 +5,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-
+/**
+ * Command used when student worker wants to create a badge
+ */
 public class CreateBadgeCommand implements BadgeCommand{
 	public static final String PORT_NUMBER = "8889";
 

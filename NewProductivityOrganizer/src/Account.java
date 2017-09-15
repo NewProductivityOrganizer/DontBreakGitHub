@@ -1,9 +1,8 @@
 
 /**
- * interface defines create and delete account
- * @author sophiemittelstadt
+ * Interface defines create and delete account
+ * Used by AccountFactory
  */
-
 public interface Account {
 	
 	public void createAccount(String employeeName);

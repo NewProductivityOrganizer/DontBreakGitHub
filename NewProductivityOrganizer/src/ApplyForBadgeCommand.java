@@ -1,8 +1,9 @@
-
+/**
+ * Command used when student worker wants to apply for a badge
+ */
 public class ApplyForBadgeCommand implements BadgeCommand {
 
-	public ApplyForBadgeCommand() {
-		
+	public ApplyForBadgeCommand() {		
 	}
 
 	@Override

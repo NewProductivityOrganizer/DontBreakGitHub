@@ -1,8 +1,9 @@
-
+/**
+ * Factory creates student worker accounts and supervisor accounts
+ */
 public class AccountFactory {
 
 	public AccountFactory() {
-		
 	}
 	
 	/**
