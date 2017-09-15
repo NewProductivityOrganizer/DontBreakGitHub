@@ -117,7 +117,9 @@ public class BadgeInput {
 		
 	}
 	
-	
+	/**
+	 * Method responsible for calling the executeCommand for the apply for badge command and returns results of that call
+	 * */
 	 
 	
 	public  void sendBadgeApplication() {
