@@ -23,10 +23,6 @@ public class BadgeInput {
     
 	
 
-	/**
-	 * Manually create each badge until a way to do this using a database is found
-	 * This is merely for the first iteration purpose
-	 */
 	/*public BadgeInput() {
 	   /*
 		     Badge updation = new Badge("Updation","Upgrade firmware on a printer",101,null);
@@ -93,10 +89,11 @@ public class BadgeInput {
 		return selection;
 	}
 	
+
 	/**
-	 * 
-	 * */
-	
+	 * Manually create each badge until a way to do this using a database is found
+	 * This is merely for the first iteration purpose
+	 */
 	public void initializeBadges() {
 		
 	    	Badge updation = new Badge("Updation","Upgrade firmware on a printer",101,null);
@@ -120,17 +117,13 @@ public class BadgeInput {
 		
 	}
 	
-	/*public String toString() {
-		
-		return "";
-	}*/
 	
 	 
 	
 	public  void sendBadgeApplication() {
 		 
 
-		   initializeBadges(); // initialize badge values
+		   initializeBadges(); // initialize simulated badge values
 	
 		
 		int badgeSelection = playerMenu();
@@ -141,9 +134,7 @@ public class BadgeInput {
 			applyForBadge = new ApplyForBadgeCommand(badges.get(UPDATION));
 			applyForBadge.executeCommand();
 		    applyForBadge.toString();
-		 	
-		    
-			
+		
 			break;
 		case THE_XANDER:
 			applyForBadge = new ApplyForBadgeCommand(badges.get(THE_XANDER));
