@@ -3,7 +3,10 @@
  */
 public class StudentWorkerAccount implements Account{
 	
+	private String userIdentity = "Student Worker";
 	private String accountName;
+	private String username;
+	private String password;
 
 	public StudentWorkerAccount() {
 	}
@@ -12,8 +15,10 @@ public class StudentWorkerAccount implements Account{
 	 * creates student worker account
 	 * @param employeeName
 	 */
-	public void createAccount(String employeeName) {
+	public void createAccount(String employeeName, String inputUsername, String inputPassword) {
 		accountName = employeeName;
+		username = inputUsername;
+		password = inputPassword;
 	}
 	
 	/**
@@ -25,11 +30,27 @@ public class StudentWorkerAccount implements Account{
 	}
 	
 	/**
-	 * used when adding a supervisor account into the database
+	 * used when adding a student worker account into the database
 	 * @return userIdentity
 	 */
 	public String getUserIdentity() {
-		return "Student Worker";
+		return userIdentity;
+	}
+	
+	/**
+	 * used when adding a student worker account into the database
+	 * @return username
+	 */
+	public String getUsername() {
+		return username;
+	}
+	
+	/**
+	 * used when adding a student worker account into the database
+	 * @return password
+	 */
+	public String getPassword() {
+		return password;
 	}
 	
 	public void deleteAccount() {
