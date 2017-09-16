@@ -209,7 +209,7 @@ public class ProductivityIncentivizer {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
@@ -289,7 +289,7 @@ public class ProductivityIncentivizer {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
@@ -365,7 +365,7 @@ public class ProductivityIncentivizer {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
@@ -445,7 +445,7 @@ public class ProductivityIncentivizer {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
