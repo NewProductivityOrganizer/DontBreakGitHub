@@ -1,3 +1,9 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  * Supervisor account is one of the classes within AccountFactory
  */
@@ -9,7 +15,6 @@ public class SupervisorAccount implements Account{
 	private String password;
 	
 	public SupervisorAccount() {
-		
 	}
 	
 	/**
@@ -58,4 +63,32 @@ public class SupervisorAccount implements Account{
 		
 	}
 	
-}
+	public void giveTopTenAwards(){
+		try (
+				// Step 1: Allocate a database "Connection" object
+			Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + ProductivityIncentivizer.PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+			Statement stmt = conn.createStatement();
+		) {
+			String getTopTen = "SELECT UserID FROM StudentWorker ORDER BY Point DESC LIMIT 10";
+			ResultSet topTen = stmt.executeQuery(getTopTen);
+			while (topTen.next()){
+				int topTenUserID = topTen.getInt(1);
+				String statement = "SELECT Awards FROM StudentWorker WHERE UserID =" + topTenUserID;
+				ResultSet rs = stmt.executeQuery(statement);
+				while (rs.next()){
+					int awards = rs.getInt(1);
+					awards++;
+					String updateAward = "UPDATE StudentWorker SET Awards =" + awards + "WHERE UserID =" + topTenUserID;		
+				}						
+			}
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	 }
+  }
+	
