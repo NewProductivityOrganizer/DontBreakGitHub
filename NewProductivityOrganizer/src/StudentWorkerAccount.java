@@ -14,7 +14,14 @@ public class StudentWorkerAccount implements Account{
 	 */
 	public void createAccount(String employeeName) {
 		accountName = employeeName;
-		System.out.println(employeeName);
+	}
+	
+	/**
+	 * used when adding a student worker account into the database
+	 * @return accountName
+	 */
+	public String getStudentWorkerName() {
+		return accountName;
 	}
 	
 	public void deleteAccount() {

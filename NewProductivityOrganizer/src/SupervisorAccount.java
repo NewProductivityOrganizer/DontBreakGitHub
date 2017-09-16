@@ -15,7 +15,14 @@ public class SupervisorAccount implements Account{
 	 */
 	public void createAccount(String employeeName) {
 		accountName = employeeName;
-		System.out.println(employeeName);
+	}
+	
+	/**
+	 * used when adding a supervisor account into the database
+	 * @return accountName
+	 */
+	public String getSupervisorName() {
+		return accountName;
 	}
 	
 	public void deleteAccount() {
