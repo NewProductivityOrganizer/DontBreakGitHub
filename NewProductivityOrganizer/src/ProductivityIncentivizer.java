@@ -216,7 +216,6 @@ public class ProductivityIncentivizer {
 				) {
 			String getTopTen = "SELECT UserID, ActualName, Point FROM StudentWorkerInformation ORDER BY Point DESC LIMIT 10";
 			ResultSet topTen = stmt.executeQuery(getTopTen);
-			List<StudentWorker> topTenStudentWorkers = new ArrayList<StudentWorker>();
 			while (topTen.next()){
 				int userID = topTen.getInt(1);
 				String actualName = topTen.getString(2);
@@ -296,7 +295,6 @@ public class ProductivityIncentivizer {
 				) {
 			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'blabla'";
 			ResultSet newBadgeInProcess = stmt.executeQuery(getNewBadgeInProcess);
-			List<StudentWorker> topTenStudentWorkers = new ArrayList<StudentWorker>();
 			while (newBadgeInProcess.next()){
 				badgeIndex += 1;
 				int badgeID = newBadgeInProcess.getInt(1);
