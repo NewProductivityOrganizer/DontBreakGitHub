@@ -384,6 +384,7 @@ public class ProductivityIncentivizer {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * The method letting user to get back to start menu
 	 */
