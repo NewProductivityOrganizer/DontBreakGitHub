@@ -45,7 +45,7 @@ public class DatabaseBuilder {
 					"unique(UserName), " +
 					"primary key(UserID));"; 
 			
-			String createStudentWorker = "create table StudentWorkerInformation ( " +
+			String createStudentWorker = "create table StudentWorker ( " +
 					"UserName varchar(10), " +
 					"UserID int, " +
 					"ActualName varchar(50), " +
