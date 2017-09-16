@@ -153,10 +153,10 @@ public class ProductivityIncentivizer {
 		String employeeName;
 		String employeeType;
 		String supervisorCode = "";
+		String username;
+		String password;
 
 		Scanner in = new Scanner(System.in);
-
-		AccountFactory accountFactory = new AccountFactory();
 		
 		System.out.println("Please enter your name.");
 		employeeName = in.nextLine();
@@ -169,27 +169,35 @@ public class ProductivityIncentivizer {
 				System.out.println("Please enter supervisor code: ");
 				supervisorCode = in.nextLine();	
 			}
-				
 		}
-		addAccount(employeeName, employeeType, supervisorCode);
-		//in.close();
+		
+		System.out.println("Select a username:");
+		username = in.nextLine();
+		
+		System.out.println("Create a password:");
+		password = in.nextLine();
+		
+		addAccount(employeeName, employeeType, supervisorCode, username, password);
 	}
 	
 	/**
 	 * Adds account, called by promptUserToCreateAccount
 	 * @param employeeName
 	 * @param employeeType
+	 * @param supervisorCode
+	 * @param username
+	 * @param password
 	 * @return boolean used for testing
 	 */
-	public boolean addAccount(String employeeName, String employeeType, String supervisorCode) {
+	public boolean addAccount(String employeeName, String employeeType, String supervisorCode, String username, String password) {
 		AccountFactory accountFactory = new AccountFactory();
 		if (employeeType.equals("1")) {
-			accountFactory.getAccount(employeeType, employeeName);		
+			accountFactory.getAccount(employeeType, employeeName, username, password);		
 			return true;
 		}
 		else if (employeeType.equals("2")){
 			if (supervisorCode.equals("123")) {
-				accountFactory.getAccount(employeeType, employeeName);
+				accountFactory.getAccount(employeeType, employeeName, username, password);
 				return true;
 			}
 			else { //invalid code input	
@@ -243,7 +251,7 @@ public class ProductivityIncentivizer {
 			System.out.println("1: Log In");
 			System.out.println("2: Create Account");
 			System.out.println("3: Display Leading Board");
-			System.out.println("4: Display Badge Uncompleted");
+			System.out.println("4: Display Incomplete Badges");
 			System.out.print("> ");
 			try {
 				selection = startChoice.nextInt();
@@ -262,6 +270,7 @@ public class ProductivityIncentivizer {
 			}
 			if (!valid)
 			{
+			
 				System.out.println("Invalid entry -- enter a number between 1 and 4");
 			}
 		}
@@ -278,6 +287,7 @@ public class ProductivityIncentivizer {
 		int selection = getBadgeChoice(badgeIndex);
 		return badgeDictionary.get(selection);
 	}
+	
 	/**
 	 * Method used to get all the unapproved new badge in the database and put them in a dictionary
 	 * @return dictionary of unapproved new badges
