@@ -217,14 +217,13 @@ public class ProductivityIncentivizer {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
 			String getTopTen = "SELECT UserID, ActualName, Point FROM StudentWorkerInformation ORDER BY Point DESC LIMIT 10";
 			ResultSet topTen = stmt.executeQuery(getTopTen);
-			List<StudentWorker> topTenStudentWorkers = new ArrayList<StudentWorker>();
 			while (topTen.next()){
 				int userID = topTen.getInt(1);
 				String actualName = topTen.getString(2);
@@ -299,14 +298,13 @@ public class ProductivityIncentivizer {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
 			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'blabla'";
 			ResultSet newBadgeInProcess = stmt.executeQuery(getNewBadgeInProcess);
-			List<StudentWorker> topTenStudentWorkers = new ArrayList<StudentWorker>();
 			while (newBadgeInProcess.next()){
 				badgeIndex += 1;
 				int badgeID = newBadgeInProcess.getInt(1);
@@ -364,20 +362,8 @@ public class ProductivityIncentivizer {
 	 */
 	public void ApproveNewBadge() {
 		Badge badge = DisplayNewBadgeInProcess();
-		try (
-				// Step 1: Allocate a database "Connection" object
-				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
-
-				// Step 2: Allocate a "Statement" object in the Connection
-				Statement stmt = conn.createStatement();
-				) {
-			String approveNewBadge = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = " + badge.getBadgeId();
-			stmt.execute(approveNewBadge);
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+		String approveNewBadge = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = " + badge.getBadgeId();
+		editDatabase(approveNewBadge);
 	}
 	
 	/**
@@ -387,7 +373,7 @@ public class ProductivityIncentivizer {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
@@ -461,6 +447,21 @@ public class ProductivityIncentivizer {
 		case 4:
 			DisplayUncompletedBadge();
 			break;
+		}
+	}
+	
+	public  void editDatabase(String statement) {
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			stmt.execute(statement);
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
