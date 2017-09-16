@@ -25,6 +25,14 @@ public class SupervisorAccount implements Account{
 		return accountName;
 	}
 	
+	/**
+	 * used when adding a supervisor account into the database
+	 * @return userIdentity
+	 */
+	public String getUserIdentity() {
+		return "Supervisor";
+	}
+	
 	public void deleteAccount() {
 		
 	}
