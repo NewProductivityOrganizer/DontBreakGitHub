@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class ProductivityIncentivizer {
 	
-	ArrayList<Badge> badges = new ArrayList<Badge>(); //used to store badges
+	private ArrayList<Badge> badges = new ArrayList<Badge>(); //used to store badges
 	public static final String PORT_NUMBER = "8889";
-
+	
 	ApplyForBadgeCommand applyForBadge;
 	public static final int UPDATION = 0; 
 	public static final int THE_XANDER = 1; 
@@ -31,6 +31,57 @@ public class ProductivityIncentivizer {
 		//empty constructor
 	}
 	
+	/**
+	* This logInHelper() method handles taking in user input for the username and password
+	* and returns an ArrayList. At index 0 the username is stored, at index 1 the password is stored.
+	* @return ArrayList<String> loginInfo
+	*/
+	
+	private ArrayList<String> logInHelper(){
+		ArrayList<String> loginInfo = new ArrayList<String>();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter your username");
+		String enteredUserName = in.nextLine();
+		loginInfo.add(enteredUserName);
+		System.out.println("Please enter your password");
+	    String enteredPassword = in.nextLine();
+	    loginInfo.add(enteredPassword);
+	    return loginInfo;
+	}
+	/**
+	* This logIn() method uses the username and password from the logInHelper() method and
+	* returns the corresponding userID
+	* @return int userID
+	*/
+	
+	private int logIn(){
+		ArrayList<String> loginInfo = logInHelper();
+		String enteredUserName = loginInfo.get(0);
+		String enteredPassword = loginInfo.get(1);
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			    String statement = "SELECT UserID FROM LogInInformation WHERE UserName =" + enteredUserName + ", UserPassword =" + enteredPassword;
+			    ResultSet rs = stmt.executeQuery(statement);
+			    if (rs.next()){
+			    	int userID = rs.getInt(1);
+			    	return userID;
+			    } 
+			    else{
+			    	System.out.println("Wrong username or password");
+			    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+	 }
+		return 0;
+   }
+		
+
 	/**
 	 * This player menu allows a user to choose from a selection of options and then a decision is amde based off of that
 	 * @author jburge
