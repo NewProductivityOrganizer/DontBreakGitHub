@@ -63,6 +63,11 @@ public class SupervisorAccount implements Account{
 		
 	}
 	
+	/**
+	 * The giveTopTenAwards() method gives an award to the top ten student workers 
+	 * with the highest number of points. 
+	 */
+	
 	public void giveTopTenAwards(){
 		try (
 				// Step 1: Allocate a database "Connection" object
