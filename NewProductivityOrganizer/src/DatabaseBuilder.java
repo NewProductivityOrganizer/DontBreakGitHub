@@ -19,7 +19,7 @@ public class DatabaseBuilder {
 				Statement stmt = conn.createStatement();
 				) {
 			// Step 3 - create our database
-			String sql = "create database ProductivityIncentizerDatabase";
+			String sql = "create database ProductivityIncentivizerDatabase";
 			stmt.execute(sql);
 
 
@@ -31,7 +31,7 @@ public class DatabaseBuilder {
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
@@ -45,7 +45,7 @@ public class DatabaseBuilder {
 					"unique(UserName), " +
 					"primary key(UserID));"; 
 			
-			String createStudentWorker = "create table StudentWorkerInformation ( " +
+			String createStudentWorker = "create table StudentWorker ( " +
 					"UserName varchar(10), " +
 					"UserID int, " +
 					"ActualName varchar(50), " +

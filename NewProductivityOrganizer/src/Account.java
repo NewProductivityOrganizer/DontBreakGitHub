@@ -5,7 +5,7 @@
  */
 public interface Account {
 	
-	public void createAccount(String employeeName);
+	public void createAccount(String employeeName, String username, String password);
 	
 	public void deleteAccount();
 	
