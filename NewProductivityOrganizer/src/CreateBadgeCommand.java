@@ -8,40 +8,23 @@ import java.sql.Statement;
 /**
  * Command used when student worker wants to create a badge
  */
-/*public class CreateBadgeCommand implements BadgeCommand{
-	public static final String PORT_NUMBER = "8889";
-
-	public CreateBadgeCommand() {
-		
+public class CreateBadgeCommand implements BadgeCommand{
+	private int creatorUserId;
+	private String badgeName;
+	private String badgeDescription;
+	private int badgeId;
+	private StudentWorkerFuncs studentWorkerOperation;
+	
+	public CreateBadgeCommand(int creatorUserId, String badgeName, String badgeDescription, StudentWorkerFuncs studentWorkerOperation) {
+		this.creatorUserId = creatorUserId;
+		this.badgeDescription = badgeDescription;
+		this.badgeName = badgeName;
+		this.studentWorkerOperation = studentWorkerOperation;
 	}
-
-	@Override
-	public void executeCommand(Badge badge) {
-		/*
-		try(
-			Connection conn = DriverManager.getConnection("jbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root");
-			Statement stmt = conn.createStatement();
-		){
-			String insertBadge = "insert into Badge"
-					+ "(badgeName, badgeDescription, creatorUserId, badgeStatus)";	
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		*/
-			
-	//}
-
-
-	//@Override
-	/*public void undoCommand() {
-		// TODO Auto-generated method stub
-		
+	public void execute() {
+		this.badgeId = studentWorkerOperation.AddNewBadge(this.creatorUserId, this.badgeName, this.badgeDescription);
 	}
-
-	@Override
-	public void executeCommand() {
-		// TODO Auto-generated method stub
-		
+	public void undo() {
+		studentWorkerOperation.UndoNewBadgeHelper(badgeId);
 	}
-
-}*/
+}
