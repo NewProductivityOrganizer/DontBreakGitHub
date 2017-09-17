@@ -21,7 +21,7 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 		this.badgeName = badgeRequested.getBadgeName();
 		this.badgeDescription = badgeRequested.getBadgeDescription();
 		this.badgeStatus = badgeRequested.getBadgeStatus();
-		badge  = new Badge(badgeName,badgeDescription,badgeStatus);
+		badge  = new Badge(badgeName,badgeDescription);
 	}
 
 	/**this method is meant to check the badge status for null
