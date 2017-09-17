@@ -37,7 +37,7 @@ public class ProductivityIncentivizer {
 	* @return ArrayList<String> loginInfo
 	*/
 	
-	private ArrayList<String> logInHelper(){
+	public ArrayList<String> LogInUserInput(){
 		ArrayList<String> loginInfo = new ArrayList<String>();
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter your username");
@@ -54,32 +54,49 @@ public class ProductivityIncentivizer {
 	* @return int userID
 	*/
 	
-	private int logIn(){
-		ArrayList<String> loginInfo = logInHelper();
-		String enteredUserName = loginInfo.get(0);
-		String enteredPassword = loginInfo.get(1);
+	public void LogIn(){
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentizerDatabase?user=root&password=root"); // MySQL
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
-			    String statement = "SELECT UserID FROM LogInInformation WHERE UserName =" + enteredUserName + ", UserPassword =" + enteredPassword;
+			boolean rightLogIn = false;
+			while (!rightLogIn) {
+				ArrayList<String> logInUserInput = LogInUserInput();
+				String enteredUserName = logInUserInput.get(0);
+				String enteredPassword = logInUserInput.get(1);
+			    String statement = "SELECT UserID,UserIdentity FROM LogInInformation WHERE UserName = '" + enteredUserName + "' AND UserPassword ='" + enteredPassword + "'";
 			    ResultSet rs = stmt.executeQuery(statement);
 			    if (rs.next()){
-			    	int userID = rs.getInt(1);
-			    	return userID;
+			    		int userId = rs.getInt(1);
+			    		String userIdentity = rs.getString(2);
+			    		LogInHelper(userIdentity, userId);
+			    		rightLogIn = true;
 			    } 
 			    else{
-			    	System.out.println("Wrong username or password");
+			    		System.out.println("Wrong username or password");
 			    }
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 	 }
-		return 0;
    }
+	
+	public void LogInHelper(String userIdentity, int userId) {
+		switch(userIdentity) {
+		case "StudentWorker":
+			LogInOperation studentWorkerLogInOperation = new LogInOperation(new StudentWorkerLogIn(), userId );
+			studentWorkerLogInOperation.CallInterfaceAfterLoggedIn(userId);
+			break;
+		case "Supervisor":
+			LogInOperation supervisorLogInOperation = new LogInOperation(new SupervisorLogIn(), userId );
+			supervisorLogInOperation.CallInterfaceAfterLoggedIn(userId);
+			break;
+		}
+	}
 		
 
 	/**
@@ -301,8 +318,8 @@ public class ProductivityIncentivizer {
 			System.out.println("\nChoose what to do: ");
 			System.out.println("1: Log In");
 			System.out.println("2: Create Account");
-			System.out.println("3: Display Leading Board");
-			System.out.println("4: Display Incomplete Badges");
+			/*System.out.println("3: Display Leading Board");
+			System.out.println("4: Display Incomplete Badges");*/
 			System.out.print("> ");
 			try {
 				selection = startChoice.nextInt();
@@ -487,17 +504,17 @@ public class ProductivityIncentivizer {
 		int startChoice = StartMenu();
 		switch (startChoice) {
 		case 1:
-			System.out.println("Bazinga!");
+			LogIn();
 			break;
 		case 2:
 			promptUserToCreateAccount();
 			break;
-		case 3:
+/*		case 3:
 			checkLeadingBoard();
 			break;
 		case 4:
 			DisplayUncompletedBadge();
-			break;
+			break;*/
 		}
 	}
 	
@@ -521,7 +538,7 @@ public class ProductivityIncentivizer {
 		//runProgram.ApproveNewBadge();
 		runProgram.operation();
 		//commented out because it's not completely working right now
-		runProgram.sendBadgeApplication();
+		//runProgram.sendBadgeApplication();
 	}
 
 }
