@@ -19,7 +19,6 @@ public class ProductivityIncentivizer {
 	private ArrayList<Badge> badges = new ArrayList<Badge>(); //used to store badges
 	public static final String PORT_NUMBER = "8889";
 	
-	ApplyForBadgeCommand applyForBadge;
 	public static final int UPDATION = 0; 
 	public static final int THE_XANDER = 1; 
 	public static final int HUMANITARIAN = 2; 
@@ -103,6 +102,7 @@ public class ProductivityIncentivizer {
 	 * This player menu allows a user to choose from a selection of options and then a decision is amde based off of that
 	 * @author jburge
 	 * */
+	//No user method
 	private static int playerMenu()
 	{
 		boolean valid = false;
@@ -146,6 +146,7 @@ public class ProductivityIncentivizer {
 	* Manually create each badge until a way to do this using a database is found
 	* This is merely for the first iteration purpose
 	*/
+	//No use method
 	public void initializeBadges() {
 	    Badge updation = new Badge("Updation","Upgrade firmware on a printer");
 	    badges.add(updation);
@@ -169,6 +170,7 @@ public class ProductivityIncentivizer {
 	* Method responsible for calling the executeCommand() for the apply for badge command and returns results of that call
 	* 
 	*/
+	//No use method
 	public  void sendBadgeApplication() {
 		initializeBadges(); // initialize simulated badge values
 		String display = "";
@@ -370,7 +372,7 @@ public class ProductivityIncentivizer {
 				selection = startChoice.nextInt();
 
 				startChoice.nextLine();
-				if ((selection > 0) && (selection <= 4))
+				if ((selection > 0) && (selection <= 2))
 				{
 					valid = true;
 				}
@@ -384,101 +386,13 @@ public class ProductivityIncentivizer {
 			if (!valid)
 			{
 			
-				System.out.println("Invalid entry -- enter a number between 1 and 4");
+				System.out.println("Invalid entry -- enter a number between 1 and 2");
 			}
 		}
 		return selection;
 	}
 	
-	/**
-	 * Display new-created badge to let supervisor to choose to approve
-	 * @return badge selected
-	 */
-	public Badge DisplayNewBadgeInProcess() {
-		HashMap<Integer, Badge> badgeDictionary = getBadgeDictionary();
-		int badgeIndex = badgeDictionary.size();
-		int selection = getBadgeChoice(badgeIndex);
-		return badgeDictionary.get(selection);
-	}
-	
-	/**
-	 * Method used to get all the unapproved new badge in the database and put them in a dictionary
-	 * @return dictionary of unapproved new badges
-	 */
-	public HashMap<Integer, Badge> getBadgeDictionary(){
-		HashMap<Integer, Badge> badgeDictionary = new HashMap<Integer, Badge>();
-		int badgeIndex = 0;
-		try (
-				// Step 1: Allocate a database "Connection" object
-				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
 
-				// Step 2: Allocate a "Statement" object in the Connection
-				Statement stmt = conn.createStatement();
-				) {
-			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'blabla'";
-			ResultSet newBadgeInProcess = stmt.executeQuery(getNewBadgeInProcess);
-			while (newBadgeInProcess.next()){
-				badgeIndex += 1;
-				int badgeID = newBadgeInProcess.getInt(1);
-				String badgeName = newBadgeInProcess.getString(2);
-				String badgeDescription = newBadgeInProcess.getString(3);
-				Badge badge = new Badge(badgeName, badgeDescription);
-				badge.setBadgeId(badgeID);
-				System.out.println( "\n" + badgeIndex +". Badge ID: " + badgeID + "    Badge Name: " + badgeName + "\nBadge Description: " + badgeDescription);
-				badgeDictionary.put(badgeIndex, badge);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return badgeDictionary;
-	}
-	
-	/**
-	 * taking user's choice of badge
-	 * @param size of badge dictionary
-	 * @return badge chosen
-	 */
-	public int getBadgeChoice(int badgeIndex) {
-		Scanner badgeChoice = new Scanner(System.in);
-		boolean valid = false;
-		int selection = 1;
-		while (!valid)
-		{
-			System.out.println("\nChoose one to approve: ");
-			System.out.print("> ");
-			try {
-				selection = badgeChoice.nextInt();
-
-				badgeChoice.nextLine();
-				if ((selection > 0) && (selection <= badgeIndex))
-				{
-					valid = true;
-				}
-			}
-			//this will catch the mismatch and prevent the error
-			catch(InputMismatchException ex)
-			{
-				//still need to gobble up the end of line
-				badgeChoice.nextLine();
-			}
-			if (!valid)
-			{
-				System.out.println("Invalid entry -- enter a number between 1 and "+ badgeIndex);
-			}
-		}
-		return selection;
-	}
-	
-	/**
-	 * Approve student-create new badge and put it into System
-	 */
-	public void ApproveNewBadge() {
-		Badge badge = DisplayNewBadgeInProcess();
-		String approveNewBadge = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = " + badge.getBadgeId();
-		editDatabase(approveNewBadge);
-	}
-	
 	/*
 	 * Display uncompleted badge
 	public void DisplayUncompletedBadge() {
