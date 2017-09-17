@@ -6,18 +6,98 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 public class StudentWorkerFuncs {
 	private static final String PORT_NUMBER = "8889";
 	private int userId;
-	
+	private Stack<BadgeCommand> commandStack= new Stack<BadgeCommand>();
 	
 	public StudentWorkerFuncs(int userId) {
 		this.userId = userId;
 	}
 	
+	/*public  void editDatabase(String statement) {
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			stmt.execute(statement);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}*/
+	/**
+	 * method takes in new badge information and call the command to execute to add new badge to database
+	 * @param creatorUserId
+	 * @param BadgeName
+	 * @param BadgeDescription
+	 */
+	public void CreateNewBadge(int creatorUserId, String BadgeName, String BadgeDescription) {
+		BadgeCommand command = new CreateBadgeCommand(creatorUserId, BadgeName, BadgeDescription, this);
+		command.execute();
+		commandStack.push(command);
+	}
+	/**
+	 * method call to undo last action
+	 */
+	public void UndoNewBadge() {
+		BadgeCommand command = commandStack.pop();
+		command.undo();
+	}
 	
-	
+	/**
+	 * method takes in badgeId to mark the badge in database as wasted
+	 * @param badgeId
+	 */
+	public void UndoNewBadgeHelper(int badgeId) {
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			String undoNewBadge = "UPDATE Badge Set BadgeStatus = 'Wasted' WHERE BadgeID = "+ badgeId;
+			stmt.execute(undoNewBadge);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * method takes in new badge info and add it to database and returns the badgeID
+	 * @param creatorUserId
+	 * @param BadgeName
+	 * @param BadgeDescription
+	 * @return
+	 */
+	public int AddNewBadge(int creatorUserId, String BadgeName, String BadgeDescription) {
+		int badgeId = 0;
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			String createNewBadge = "INSERT INTO Badge (CreatorUserID, BadgeName, BadgeDescription) VALUES (creatorUserId, '"+BadgeName+"','" + BadgeDescription +"')";
+			String getNewBadgeId = "SELECT LAST_INSERT_ID()";
+			stmt.execute(createNewBadge);
+			ResultSet rs = stmt.executeQuery(getNewBadgeId);
+			while (rs.next()) {
+				badgeId = rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return badgeId;
+	}
 	/**
 	 * Display uncompleted badge
 	 */
