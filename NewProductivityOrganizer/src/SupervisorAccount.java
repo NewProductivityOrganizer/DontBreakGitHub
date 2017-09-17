@@ -87,6 +87,7 @@ public class SupervisorAccount implements Account{
 					int awards = rs.getInt(1);
 					awards++;
 					String updateAward = "UPDATE StudentWorker SET Awards =" + awards + "WHERE UserID =" + topTenUserID;		
+					editDatabase(updateAward);
 				}						
 			}
 
@@ -118,13 +119,30 @@ public class SupervisorAccount implements Account{
 				while (rs.next()){
 					int warnings = rs.getInt(1);
 					warnings++;
-					String updateWarnings = "UPDATE StudentWorker SET Warnings =" + warnings + "WHERE UserID =" + bottomUserID;		
-				}						
+					String updateWarnings = "UPDATE StudentWorker SET Warnings =" + warnings + "WHERE UserID =" + bottomUserID;
+					editDatabase(updateWarnings);
+				}
 
 		    }catch(SQLException e) {
 			 e.printStackTrace();
 		     }
 		
 	 }
+	
+	
+	public  void editDatabase(String statement) {
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + ProductivityIncentivizer.PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			stmt.execute(statement);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
   }
 	
