@@ -299,7 +299,6 @@ public class ProductivityIncentivizer {
 				StudentWorker studentWorker = new StudentWorker(userID, actualName, point);
 				System.out.println(studentWorker);
 			}
-			BackToMain();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -434,9 +433,8 @@ public class ProductivityIncentivizer {
 		editDatabase(approveNewBadge);
 	}
 	
-	/**
+	/*
 	 * Display uncompleted badge
-	 */
 	public void DisplayUncompletedBadge() {
 		try (
 				// Step 1: Allocate a database "Connection" object
@@ -461,11 +459,10 @@ public class ProductivityIncentivizer {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
-	/**
+	/*
 	 * The method letting user to get back to start menu
-	 */
 	public void BackToMain() {
 		Scanner in = new Scanner(System.in);
 		boolean valid = false;
@@ -495,7 +492,7 @@ public class ProductivityIncentivizer {
 			}
 		}
 		operation();
-	}
+	}*/
 	
 	/**
 	 * operator of the software
