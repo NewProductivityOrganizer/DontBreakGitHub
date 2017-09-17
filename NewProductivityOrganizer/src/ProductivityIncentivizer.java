@@ -281,7 +281,8 @@ public class ProductivityIncentivizer {
 	 * Check the Leading Board
 	 * Print out ten student workers with highest points
 	 */
-	public void checkLeadingBoard() {
+	public List<StudentWorker> getLeadingBoard() {
+		List<StudentWorker> studentWorkerList = new ArrayList<StudentWorker>();
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
@@ -297,10 +298,20 @@ public class ProductivityIncentivizer {
 				String actualName = topTen.getString(2);
 				int point = topTen.getInt(3);
 				StudentWorker studentWorker = new StudentWorker(userID, actualName, point);
-				System.out.println(studentWorker);
+				studentWorkerList.add(studentWorker);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}
+		return studentWorkerList;
+	}
+	/**
+	 * Display the leading board
+	 */
+	public void displayLeadingBoard() {
+		List<StudentWorker> studentWorkerList = getLeadingBoard();
+		for (StudentWorker studentWorker : studentWorkerList) {
+			System.out.println(studentWorker);
 		}
 	}
 	

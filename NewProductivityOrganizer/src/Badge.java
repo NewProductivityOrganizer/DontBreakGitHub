@@ -13,10 +13,9 @@ public class Badge {
 	private int applicantApproverUserId;
 	private int badgeId;
 
-	public Badge(String badgeName, String badgeDescription, String badgeStatus) {
+	public Badge(String badgeName, String badgeDescription) {
 		this.badgeName = badgeName;
 		this.badgeDescription = badgeDescription;
-		this.badgeStatus = badgeStatus;
 	}
 	
 	public String getBadgeName() {
@@ -87,7 +86,7 @@ public class Badge {
 	 * Used for printing badge information in the main method
 	 */
 	public String toString(){
-		return "Badge: " + badgeName + ", " + badgeDescription;
+		return "BadgeID: " + this.badgeId +"     Badge: " + this.badgeName + "\nDescription: " + badgeDescription;
 
 	}
 	

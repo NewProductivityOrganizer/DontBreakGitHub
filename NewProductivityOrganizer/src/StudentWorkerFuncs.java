@@ -3,7 +3,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class StudentWorkerFuncs {
 	private static final String PORT_NUMBER = "8889";
@@ -21,7 +23,8 @@ public class StudentWorkerFuncs {
 	 */
 	public void DisplayUncompletedBadge() {
 			String getUncompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'Uncompleted'";
-			getAndPrintBadgeInfo(getUncompletedBadge);
+			List<Badge> badgeList = getAndPrintBadgeInfo(getUncompletedBadge);
+			printBadge(badgeList);
 	}
 	
 	/**
@@ -29,7 +32,8 @@ public class StudentWorkerFuncs {
 	 */
 	public void DisplayMyBadge() {
 		String myCompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + "AND BadgeStatus = 'Completed'";
-		getAndPrintBadgeInfo(myCompletedBadge);
+		List<Badge> badgeList = getAndPrintBadgeInfo(myCompletedBadge);
+		printBadge(badgeList);
 	}
 	
 	/**
@@ -37,14 +41,17 @@ public class StudentWorkerFuncs {
 	 */
 	public void DisplayMyBadgeInProcess() {
 		String myBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + "AND BadgeStatus = 'InProcess'";
-		getAndPrintBadgeInfo(myBadgeInProcess);
+		List<Badge> badgeList = getAndPrintBadgeInfo(myBadgeInProcess);
+		printBadge(badgeList);
 	}
 	
 	/**
-	 * Method takes in statement and based on it retrieving and printing the badge information
+	 * Method takes in statement and based on it retrieving the badge information
 	 * @param statement for sql stored as String
+	 * @return list of badges matches the requirements
 	 */
-	public void getAndPrintBadgeInfo(String statement) {
+	public List<Badge> getAndPrintBadgeInfo(String statement) {
+		List<Badge> badgeList = new ArrayList<Badge>();
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
@@ -60,14 +67,29 @@ public class StudentWorkerFuncs {
 				int badgeID = badges.getInt(1);
 				String badgeName = badges.getString(2);
 				String badgeDescription = badges.getString(3);
-				System.out.println( "\n" + badgeIndex +". Badge ID: " + badgeID + "    Badge Name: " + badgeName + "\nBadge Description: " + badgeDescription);
+				Badge badge = new Badge(badgeName, badgeDescription);
+				badge.setBadgeId(badgeID);
+				badgeList.add(badge);
 			}
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		return badgeList;
 	}
 	
+	/**
+	 * method to give output, printing out the selected badges
+	 * @param badgeList
+	 */
+	public void printBadge(List<Badge> badgeList) {
+		int badgeIndex = 0;
+		for (Badge badge : badgeList) {
+			badgeIndex++;
+			System.out.println(badgeIndex + ".");
+			System.out.println(badge);
+		}
+	}
 	/**
 	 * retrieving and printing out the student worker's performance
 	 */
