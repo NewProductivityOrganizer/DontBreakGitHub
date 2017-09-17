@@ -31,18 +31,29 @@ public class StudentWorkerFuncs {
 			e.printStackTrace();
 		}
 	}*/
-	
+	/**
+	 * method takes in new badge information and call the command to execute to add new badge to database
+	 * @param creatorUserId
+	 * @param BadgeName
+	 * @param BadgeDescription
+	 */
 	public void CreateNewBadge(int creatorUserId, String BadgeName, String BadgeDescription) {
 		BadgeCommand command = new CreateBadgeCommand(creatorUserId, BadgeName, BadgeDescription, this);
 		command.execute();
 		commandStack.push(command);
 	}
-	
+	/**
+	 * method call to undo last action
+	 */
 	public void UndoNewBadge() {
 		BadgeCommand command = commandStack.pop();
 		command.undo();
 	}
 	
+	/**
+	 * method takes in badgeId to mark the badge in database as wasted
+	 * @param badgeId
+	 */
 	public void UndoNewBadgeHelper(int badgeId) {
 		try (
 				// Step 1: Allocate a database "Connection" object
@@ -58,7 +69,13 @@ public class StudentWorkerFuncs {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * method takes in new badge info and add it to database and returns the badgeID
+	 * @param creatorUserId
+	 * @param BadgeName
+	 * @param BadgeDescription
+	 * @return
+	 */
 	public int AddNewBadge(int creatorUserId, String BadgeName, String BadgeDescription) {
 		int badgeId = 0;
 		try (
