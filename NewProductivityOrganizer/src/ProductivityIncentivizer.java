@@ -257,7 +257,7 @@ public class ProductivityIncentivizer {
 	 * @param password
 	 * @return boolean used for testing
 	 */
-	public boolean addAccount(String employeeName, String employeeType, String supervisorCode, String username, String password) {
+	/*public boolean addAccount(String employeeName, String employeeType, String supervisorCode, String username, String password) {
 		AccountFactory accountFactory = new AccountFactory();
 		if (employeeType.equals("1")) {
 			accountFactory.getAccount(employeeType, employeeName, username, password);		
@@ -273,7 +273,42 @@ public class ProductivityIncentivizer {
 			}
 		}
 		return false;
+	}*/
+	public boolean addAccount(String employeeName, String employeeType, String supervisorCode, String username, String password){
+	try (
+			// Step 1: Allocate a database "Connection" object
+			Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+			// Step 2: Allocate a "Statement" object in the Connection
+			Statement stmt = conn.createStatement();
+			) {
+		AccountFactory accountFactory = new AccountFactory();
+		if (employeeType.equals("1")) {
+			//Account account = new StudentWorkerAccount();
+			Account account = accountFactory.getAccount(employeeType, employeeName, username, password);	
+			String addStudentWorkerAccount = "INSERT INTO LogInInformation (" + account.getUsername() + "," + account.getPassword() +
+					"," + "'Student Worker')";
+			editDatabase(addStudentWorkerAccount);
+			return true;
+		}
+		else if (employeeType.equals("2")){
+			Account account = accountFactory.getAccount(employeeType, employeeName, username, password);
+			String addSupervisorAccount = "INSERT INTO LogInInformation (" + account.getUsername() + "," + account.getPassword() +
+					"," + "'Supervisor')";
+			editDatabase(addSupervisorAccount);
+			return true;
+		}
+		else { //invalid code input
+			System.out.println("Invalid input.");
+			return false;
+		}
 	}
+	catch(SQLException e) {
+		e.printStackTrace();
+	}
+	return false;
+}
 	
 	
 		

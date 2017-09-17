@@ -56,4 +56,8 @@ public class StudentWorkerAccount implements Account{
 	public void deleteAccount() {
 		
 	}
+
+	public String getName() {
+		return accountName;
+	}
 }

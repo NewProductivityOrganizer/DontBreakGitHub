@@ -9,4 +9,12 @@ public interface Account {
 	
 	public void deleteAccount();
 	
+	public String getName();
+	
+	public String getPassword();
+	
+	public String getUserIdentity();
+	
+	public String getUsername();
+	
 }

@@ -31,7 +31,7 @@ public class SupervisorAccount implements Account{
 	 * used when adding a supervisor account into the database
 	 * @return accountName
 	 */
-	public String getSupervisorName() {
+	public String getName() {
 		return accountName;
 	}
 	
@@ -58,6 +58,7 @@ public class SupervisorAccount implements Account{
 	public String getPassword() {
 		return password;
 	}
+	
 	
 	public void deleteAccount() {
 		
