@@ -219,40 +219,26 @@ public class SupervisorFuncs {
 	 * @param badge
 	 * @return boolean
 	 */
-	public boolean approveBadgeApplication(Badge badge){
-		
-		try (
-				// Step 1: Allocate a database "Connection" object
-				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
-
-				// Step 2: Allocate a "Statement" object in the Connection
-				Statement stmt = conn.createStatement();
-				) {
-			Scanner sc = new Scanner(System.in);
-			boolean isValid = false;
-			while (!isValid){
-			
-			System.out.println("Would you like to approve this badge application? Yes(1) or no(2)?");
-			String userInput = sc.nextLine();
-			if (userInput.equals("1")){
-				String updateBadge = "UPDATE Badge SET BadgeStatus = 'Completed' WHERE BadgeID =" + badge.getBadgeId();
-				editDatabase(updateBadge);
-				return true;
-			}
-			else if (userInput.equals("2")){
-				String updateBadge = "UPDATE Badge Set BadgeStatus = 'Uncompleted' WHERE BadgeID =" + badge.getBadgeId();
-				editDatabase(updateBadge);
-				return true;
-			}
-			System.out.println("Invalid input.");
+	public boolean approveBadgeApplication(){
+		Scanner sc = new Scanner(System.in);
+		String user_input = sc.nextLine();
+		Badge badge = DisplayNewBadgeInProcess();
+		String approveBadgeApplication = "UPDATE Badge SET BadgeStatus = 'Completed' WHERE BadgeID =" + badge.getBadgeId();
+		String denyBadgeApplication = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID =" + badge.getBadgeId();
+		System.out.println("Would you like to approve this application (1) or deny it(2)?");
+		if (user_input.equals("1")){
+			editDatabase(approveBadgeApplication);
+			return true;
 		}
+		else if (user_input.equals("2")){
+			editDatabase(denyBadgeApplication);
+			return true;
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
+		System.out.println("Invalid input.");
 		return false;
-	}
 		
 	}
+
+		
+}
 
