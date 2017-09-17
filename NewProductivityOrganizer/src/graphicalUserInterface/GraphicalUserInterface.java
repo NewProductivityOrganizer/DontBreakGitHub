@@ -32,9 +32,11 @@ public class GraphicalUserInterface extends JFrame  {
 
 	private JPanel contentPane;
 	private JPanel accountPane;//panel for create account
-	private JPanel individualAccountPane;//pane for individual accounts
+	private JPanel supervisorAccountPane;//pane for individual accounts
+	private JPanel studentworkerAccountPane;
 	private JTextField username;
 	private JPasswordField passwordField;
+	private JPasswordField passwordField2;
 	private JButton btnLogin;
 	private JLabel lblPrompt;
 	private JButton btnCreateAccount;
@@ -43,11 +45,12 @@ public class GraphicalUserInterface extends JFrame  {
 	private JRadioButton supervisorButton;
 	private JRadioButton studentWorkerButton;
 	private JButton btnNewButton;
+	private char [] password;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,7 +61,7 @@ public class GraphicalUserInterface extends JFrame  {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -79,23 +82,34 @@ public class GraphicalUserInterface extends JFrame  {
 		lblNewLabel.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 15));
 		contentPane.add(lblNewLabel);
 		
-		username = new JTextField();
+		username = new JTextField(" ");
 		username.setBounds(140, 148, 135, 32);
 		contentPane.add(username);
 		username.setColumns(10);
 		
-		JLabel lblUSERNAME = new JLabel("USERNAME:");
+		
+		
+		
+		JLabel lblUSERNAME = new JLabel("USERNAME");
 		lblUSERNAME.setBounds(49, 156, 79, 16);
 		contentPane.add(lblUSERNAME);
+	
+		
+		
+		
 		
 		JLabel lblPASSWORD = new JLabel("PASSWORD:");
 		lblPASSWORD.setBounds(49, 212, 79, 16);
 		contentPane.add(lblPASSWORD);
+	
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(140, 207, 135, 32);
 		passwordField.setEchoChar('*');
 		contentPane.add(passwordField);
+		
+		 password = passwordField.getPassword();
+		
 		
 		btnLogin = new JButton("Login");
 		btnLogin.setBounds(162, 261, 96, 22);
@@ -106,32 +120,54 @@ public class GraphicalUserInterface extends JFrame  {
 		lblPrompt = new JLabel("Don't have an account?");
 		lblPrompt.setBounds(20, 315, 181, 16);
 		contentPane.add(lblPrompt);
+	
 		
 		btnCreateAccount = new JButton("Create Account>>");
 		btnCreateAccount.setBounds(6, 343, 160, 29);
 		contentPane.add(btnCreateAccount);
 		btnCreateAccount.setVisible(true);
-		
+	
+	
 		
 		/**
-		 * ActionListener for the create account button*/
+		 * ActionListener for the create account button
+		 * Proceed to creating account interface
+		 * */
 		
 		btnCreateAccount.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent event)
 			{
-				 btnLogin.setVisible(false);
+			   btnLogin.setVisible(false);
 			    createAccount();//method to take to create account window
-			   
+			
+	        }
+		});
+		
+		/**
+		 * actionListener for Login button
+		 * should lead to interface for login
+		 * make template
+		 * */
+		btnLogin.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+			   btnLogin.setVisible(false);
+			    createAccount();//method to take to create account window
+			
 	        }
 		});
 		
 		
-		
-		
-		
+
 	}
+	/**
+	 * GUI for create account 
+	 * with options to choose to create a student worker account or a supervisor account
+	 * */
 	
 	public void createAccount() {
 		setTitle("Productivity Incentivizer");
@@ -171,25 +207,45 @@ public class GraphicalUserInterface extends JFrame  {
 		btnNext = new JButton("Proceed>>");
 		btnNext.setBounds(6, 343, 160, 29);
 		accountPane.add(btnNext);
-		btnNext.setVisible(true);
+		btnNext.setVisible(false);
 		
 		
 		/**
 		 * Action Listener for proceed button
 		 * FIX this
 		 * */
+	
 		
-		btnNext.addActionListener(new ActionListener()
+		supervisorButton.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent event)
 			{
-			  if((event.getSource()==supervisorButton) ||(event.getSource() == studentWorkerButton)) {
-				  btnNext.setVisible(false);
-			      individualAccount();//method to take to create account window
+			if(event.getSource() == supervisorButton) {
+				  btnNext.setVisible(true);
+				  btnBack.setVisible(false);
+				  supervisorAccount();//method to take to create account window
+				  System.out.println("TEST");
 			  }
 	        }
 		});
+		
+		
+		studentWorkerButton.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+			if(event.getSource() == studentWorkerButton) {
+				  btnNext.setVisible(true);
+				  btnBack.setVisible(false);
+				  studentworkerAccount();//method to take to create account window
+				  System.out.println("TEST");
+			  }
+	        }
+		});
+		
+		
 		
 		
 		/**
@@ -200,83 +256,161 @@ public class GraphicalUserInterface extends JFrame  {
 		btnBack = new JButton("<<Back");
 		btnBack.setBounds(207,343,117,29);
 		accountPane.add(btnBack);
-
-	/*
+		btnBack.setVisible(true);
+/**
+ * FIX THIS */
+	
 		btnBack.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent event)
 			{
-				
-				
+				btnNext.setVisible(false);
+				System.out.println("supposed to be Back");
+				 
+		
 	        }
 		});
-		*/
 		
-		
-		
-		
-		
+
 		
 	}
 	
 	
-	
-	public void individualAccount() {
+	/**
+	 * GUI based on option chosen in previous GUI
+	 * */
+	public void supervisorAccount() {
 		setTitle("Create Account");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200,350, 400);
-		individualAccountPane = new JPanel();
-		individualAccountPane.setBackground(new Color(205, 133, 63));
-		individualAccountPane.setForeground(Color.BLACK);
-		individualAccountPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(individualAccountPane);
-		individualAccountPane.setLayout(null);
+		setBounds(200,200,400, 450);
+		supervisorAccountPane = new JPanel();
+		supervisorAccountPane.setBackground(new Color(205, 133, 63));
+		supervisorAccountPane.setForeground(Color.BLACK);
+		supervisorAccountPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(supervisorAccountPane);
+		supervisorAccountPane.setLayout(null);
 		
 
-		JLabel lblRoleSelection = new JLabel("Enter details below");
+		JLabel lblRoleSelection = new JLabel("Create account below");
 		lblRoleSelection.setBounds(6, 70, 338, 38);
 		lblRoleSelection.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 15));
-		individualAccountPane.add(lblRoleSelection);
+		supervisorAccountPane.add(lblRoleSelection);
 		
 		
 		JLabel lblUSERNAME = new JLabel("USERNAME:");
 		lblUSERNAME.setBounds(49, 156, 79, 16);
-		contentPane.add(lblUSERNAME);
+		supervisorAccountPane.add(lblUSERNAME);
 		
 		
 		username = new JTextField();
 		username.setBounds(140, 148, 135, 32);
-		individualAccountPane.add(username);
+		supervisorAccountPane.add(username);
 		username.setColumns(10);
 		
 		
 		JLabel lblPASSWORD = new JLabel("PASSWORD:");
 		lblPASSWORD.setBounds(49, 212, 79, 16);
-		individualAccountPane.add(lblPASSWORD);
+		supervisorAccountPane.add(lblPASSWORD);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(140, 207, 135, 32);
 		passwordField.setEchoChar('*');
-		individualAccountPane.add(passwordField);
+		supervisorAccountPane.add(passwordField);
 		
 		
 		JLabel lblVerify = new JLabel("VERIFY PASSWORD:");
-		lblVerify .setBounds(49, 200, 79, 16);
-		individualAccountPane.add(lblVerify);
+		lblVerify .setBounds(49,300, 200, 16);
+		supervisorAccountPane.add(lblVerify);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(140, 207, 135, 32);
-		passwordField.setEchoChar('*');
-		individualAccountPane.add(passwordField);
+		passwordField2 = new JPasswordField();
+		passwordField2.setBounds(150,312, 135, 32);
+		passwordField2.setEchoChar('*');
+		supervisorAccountPane.add(passwordField2);
 		
+
+		btnNext = new JButton("Confirm");
+		btnNext.setBounds(6, 350, 160, 29);
+		supervisorAccountPane.add(btnNext);
+		btnNext.setVisible(true);
 		
+		btnBack = new JButton("<<Back");
+		btnBack.setBounds(207,350,117,29);
+		supervisorAccountPane.add(btnBack);
+		btnBack.setVisible(true);
 		
 		
 		
 		
 	}
 	
+	public void studentworkerAccount() {
+		setTitle("Create Student Worker Account");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(200, 200,350, 400);
+		studentworkerAccountPane = new JPanel();
+		studentworkerAccountPane.setBackground(new Color(205, 133, 63));
+		studentworkerAccountPane.setForeground(Color.BLACK);
+		studentworkerAccountPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(studentworkerAccountPane);
+		studentworkerAccountPane.setLayout(null);
+		
 
+		
+		
+		
+		JLabel lblSUSERNAME = new JLabel("USERNAME:");
+		lblSUSERNAME.setBounds(49, 156, 79, 16);
+		studentworkerAccountPane.add(lblSUSERNAME);
+		
+		
+		username = new JTextField();
+		username.setBounds(140, 148, 135, 32);
+		studentworkerAccountPane.add(username);
+		username.setColumns(10);
+		
+		
+		JLabel lblSPASSWORD = new JLabel("PASSWORD:");
+		lblSPASSWORD.setBounds(49, 212, 79, 16);
+		studentworkerAccountPane.add(lblSPASSWORD);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(140, 207, 135, 32);
+		passwordField.setEchoChar('*');
+		studentworkerAccountPane.add(passwordField);
+		
+		
+		JLabel lblVerify = new JLabel("VERIFY PASSWORD:");
+		lblVerify .setBounds(49, 300, 200, 16);
+		studentworkerAccountPane.add(lblVerify);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(150, 312, 135, 32);
+		passwordField.setEchoChar('*');
+		studentworkerAccountPane.add(passwordField);
+		
+		
+		btnNext = new JButton("Confirm");
+		btnNext.setBounds(6, 350, 160, 29);
+		studentworkerAccountPane.add(btnNext);
+		btnNext.setVisible(true);
+		
+		btnBack = new JButton("<<Back");
+		btnBack.setBounds(207,350,117,29);
+		studentworkerAccountPane.add(btnBack);
+		btnBack.setVisible(true);
+		
+		
+		
+		
+	}
+	
+	
+	/**
+	 * TO DO FOR THE CLASS:
+	 * REFACTOR TO REMOVE REPETITION, NO NEED TO HAVE SOME VARIABLES RENAMES
+	 * */
+	
+	
 	
 }

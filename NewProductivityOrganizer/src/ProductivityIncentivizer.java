@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import graphicalUserInterface.GraphicalUserInterface;
+
+import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -515,13 +519,28 @@ public class ProductivityIncentivizer {
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * change name of the gui*/
 	public static void main(String[] args) {
-		ProductivityIncentivizer runProgram = new ProductivityIncentivizer();
+		GraphicalUserInterface gui = new GraphicalUserInterface();
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GraphicalUserInterface frame = new GraphicalUserInterface();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
+		/*ProductivityIncentivizer runProgram = new ProductivityIncentivizer();
 		//runProgram.ApproveNewBadge();
 		runProgram.operation();
 		//commented out because it's not completely working right now
-		runProgram.sendBadgeApplication();
+		runProgram.sendBadgeApplication();*/
 	}
 
 }
