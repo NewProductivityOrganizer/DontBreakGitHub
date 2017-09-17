@@ -147,21 +147,21 @@ public class ProductivityIncentivizer {
 	* This is merely for the first iteration purpose
 	*/
 	public void initializeBadges() {
-	    Badge updation = new Badge("Updation","Upgrade firmware on a printer",null);
+	    Badge updation = new Badge("Updation","Upgrade firmware on a printer");
 	    badges.add(updation);
 	    
-	    Badge theXander = new Badge("theXander","develop a mobile app for CC",null);
+	    Badge theXander = new Badge("theXander","develop a mobile app for CC");
 	    
 	    badges.add(theXander);
-	    Badge humanitarian = new Badge("Humanitarian","develop a set of cards for ITS: Cards Against Humanity",null);
+	    Badge humanitarian = new Badge("Humanitarian","develop a set of cards for ITS: Cards Against Humanity");
 	    
 	    badges.add(humanitarian);
-	    Badge sevenLeagueBoots = new Badge("Seven league boots","Help someone in facilities or HVAC",null);
+	    Badge sevenLeagueBoots = new Badge("Seven league boots","Help someone in facilities or HVAC");
 	    
 	     badges.add(sevenLeagueBoots);
-	    Badge itsManager = new Badge("ITS Manager","Talk to a sales vendor for at least 5 minutes",null);
+	    Badge itsManager = new Badge("ITS Manager","Talk to a sales vendor for at least 5 minutes");
 	    badges.add(itsManager);
-	    Badge newIsBetter = new Badge("New is Better","Upgrade the OS on a computer",null);
+	    Badge newIsBetter = new Badge("New is Better","Upgrade the OS on a computer");
 	    badges.add(newIsBetter);
 	}
 	
@@ -388,7 +388,7 @@ public class ProductivityIncentivizer {
 				int badgeID = newBadgeInProcess.getInt(1);
 				String badgeName = newBadgeInProcess.getString(2);
 				String badgeDescription = newBadgeInProcess.getString(3);
-				Badge badge = new Badge(badgeName, badgeDescription, "");
+				Badge badge = new Badge(badgeName, badgeDescription);
 				badge.setBadgeId(badgeID);
 				System.out.println( "\n" + badgeIndex +". Badge ID: " + badgeID + "    Badge Name: " + badgeName + "\nBadge Description: " + badgeDescription);
 				badgeDictionary.put(badgeIndex, badge);
