@@ -49,26 +49,23 @@ public class StudentWorkerFuncs {
 		BadgeCommand command = commandStack.pop();
 		command.undo();
 	}
+	/**
+	 * method takes in selected uncompleted badge id and call the command to execute to change the badge status in database
+	 */
+	public void ApplyBadge(int badgeId) {
+		BadgeCommand command = new ApplyBadgeCommand(badgeId, this);
+		command.execute();
+		commandStack.push(command);
+	}
 	
 	/**
-	 * method takes in badgeId to mark the badge in database as wasted
-	 * @param badgeId
+	 * 
 	 */
-	public void UndoNewBadgeHelper(int badgeId) {
-		try (
-				// Step 1: Allocate a database "Connection" object
-				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
-
-				// Step 2: Allocate a "Statement" object in the Connection
-				Statement stmt = conn.createStatement();
-				) {
-			String undoNewBadge = "UPDATE Badge Set BadgeStatus = 'Wasted' WHERE BadgeID = "+ badgeId;
-			stmt.execute(undoNewBadge);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+	public void UndoApplication() {
+		BadgeCommand command = commandStack.pop();
+		command.undo();
 	}
+	
 	/**
 	 * method takes in new badge info and add it to database and returns the badgeID
 	 * @param creatorUserId
@@ -98,6 +95,36 @@ public class StudentWorkerFuncs {
 		}
 		return badgeId;
 	}
+	
+	/**
+	 * method takes in badgeId to mark the badge in database as wasted
+	 * @param badgeId
+	 */
+	public void UndoNewBadgeHelper(int badgeId) {
+		String undoNewBadge = "UPDATE Badge SET BadgeStatus = 'Wasted' WHERE BadgeID = "+ badgeId;
+		editDatabase(undoNewBadge);
+	}
+	
+	/**
+	 * 
+	 */
+	public void ChangeAppliedBadgeStatus(int badgeId) {
+		String changeBadgeStatus = "UPDATE Badge SET BadgeStatus = 'InProgress' WHERE BadgeID = " +badgeId;
+		editDatabase(changeBadgeStatus);
+		String changeClaimingId = "UPDATE Badge SET ClaimingUserID = " + this.userId +" WHERE BadgeID = "+ badgeId;
+		editDatabase(changeClaimingId);
+	}
+	
+	/**
+	 * 
+	 */
+	public void UndoAppliedBadge(int badgeId) {
+		String undoApplication = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = "+ badgeId;
+		String changeClaimingId = "UPDATE Badge SET ClaimingUserID = 0 WHERE BadgeID = " + badgeId;
+		editDatabase(undoApplication);
+		editDatabase(changeClaimingId);
+	}
+	
 	/**
 	 * Display uncompleted badge
 	 */
@@ -190,6 +217,25 @@ public class StudentWorkerFuncs {
 				System.out.println( "Num of Awards recieved :"+ awardNum +"\nNum of Warnings recieved :" + warningNum);
 			}
 			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * method takes in a statement and execute it in MySql
+	 * @param statement
+	 */
+	public  void editDatabase(String statement) {
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			stmt.execute(statement);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

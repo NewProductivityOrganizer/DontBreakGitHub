@@ -102,7 +102,10 @@ public class SupervisorFuncs {
 			editDatabase(giveWarning);
 		}
 	}
-	
+	/**
+	 * method takes in a statement and execute it in MySql
+	 * @param statement
+	 */
 	public  void editDatabase(String statement) {
 		try (
 				// Step 1: Allocate a database "Connection" object
