@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.util.Scanner;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -116,4 +117,48 @@ public class SupervisorFuncs {
 			e.printStackTrace();
 		}
 	}
-}
+	/**
+	 * The approvateBadgeApplication method takes in a badge awaiting approval,
+	 * and allows the Supervisor to either approve the badge (which updates the status
+	 * of the badge to "Completed"), or reject the badges (which updates the status of
+	 * the badge to uncompleted)
+	 * @param badge
+	 * @return boolean
+	 */
+	public boolean approveBadgeApplication(Badge badge){
+		
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			Scanner sc = new Scanner(System.in);
+			boolean isValid = false;
+			while (!isValid){
+			
+			System.out.println("Would you like to approve this badge application? Yes(1) or no(2)?");
+			String userInput = sc.nextLine();
+			if (userInput.equals("1")){
+				String updateBadge = "UPDATE Badge SET BadgeStatus = 'Completed' WHERE BadgeID =" + badge.getBadgeId();
+				editDatabase(updateBadge);
+				return true;
+			}
+			else if (userInput.equals("2")){
+				String updateBadge = "UPDATE Badge Set BadgeStatus = 'Uncompleted' WHERE BadgeID =" + badge.getBadgeId();
+				editDatabase(updateBadge);
+				return true;
+			}
+			System.out.println("Invalid input.");
+		}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+		
+	}
+
