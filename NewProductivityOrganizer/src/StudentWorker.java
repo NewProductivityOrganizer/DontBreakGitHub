@@ -9,6 +9,9 @@ public class StudentWorker {
 		this.point = point;
 	}
 	
+	public int getUserID() {
+		return this.userID;
+	}
 	public String toString() {
 		
 		return "\nStudent ID: " +userID + "\nStudent Name: " + actualName + "\nPoints Earned: " + point;
