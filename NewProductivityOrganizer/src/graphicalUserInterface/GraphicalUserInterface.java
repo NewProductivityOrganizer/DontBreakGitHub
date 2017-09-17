@@ -36,9 +36,11 @@ public class GraphicalUserInterface extends JFrame  {
 	private JButton btnLogin;
 	private JLabel lblPrompt;
 	private JButton btnCreateAccount;
-	private JButton btnProceed;
+	private JButton btnNext;
+	private JButton btnBack;
 	private JRadioButton supervisorButton;
 	private JRadioButton studentWorkerButton;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -106,6 +108,8 @@ public class GraphicalUserInterface extends JFrame  {
 		btnCreateAccount.setBounds(6, 343, 160, 29);
 		contentPane.add(btnCreateAccount);
 		
+		
+		
 		/**
 		 * ActionListener for the create account button*/
 		
@@ -115,7 +119,7 @@ public class GraphicalUserInterface extends JFrame  {
 			public void actionPerformed(ActionEvent event)
 			{
 				btnLogin.setVisible(true);
-			  createAccount();//method to take to create account window
+			    createAccount();//method to take to create account window
 	        }
 		});
 		
@@ -151,25 +155,52 @@ public class GraphicalUserInterface extends JFrame  {
 		lblRoleSelection.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 15));
 		accountPane.add(lblRoleSelection);
 		
+	
 		
-		btnProceed = new JButton("Proceed>>");
-		btnProceed.setBounds(6, 343, 160, 29);
-		accountPane.add(btnProceed);
+		btnNext = new JButton("Proceed>>");
+		btnNext.setBounds(6, 343, 160, 29);
+		accountPane.add(btnNext);
+		//btnNext.setVisible(false);
+		
 		
 		/**
 		 * Action Listener for proceed button
 		 * FIX this
 		 * */
 		
-		btnProceed.addActionListener(new ActionListener()
+		btnNext.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+			  	
+			  individualAccount();//method to take to create account window
+	        }
+		});
+		
+		
+		/**
+		 * Action Listener for back button
+		 * FIX this
+		 * */
+		
+		btnBack = new JButton("<<Back");
+		btnBack.setBounds(207,343,117,29);
+		accountPane.add(btnBack);
+
+	
+		btnBack.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent event)
 			{
 				
-			  individualAccount();//method to take to create account window
+				
 	        }
 		});
+		
+		
+		
 		
 		
 		
