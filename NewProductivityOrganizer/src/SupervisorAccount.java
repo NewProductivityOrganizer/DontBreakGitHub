@@ -95,5 +95,36 @@ public class SupervisorAccount implements Account{
 		}
 		
 	 }
+	
+	/**
+	 * The giveBottomHalfWarnings() method gives a warning to the bottom 50% of
+	 * student workers (the 50% with the lower than average points). 
+	 */
+	
+	public void giveBottomHalfWarnings(){
+		try (
+				// Step 1: Allocate a database "Connection" object
+			Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + ProductivityIncentivizer.PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+			Statement stmt = conn.createStatement();
+		 ) {
+			String getBottomHalf = "SELECT UserID FROM StudentWorker EXCEPT TOP 50 PERCENT";
+			ResultSet bottom = stmt.executeQuery(getBottomHalf);
+				int bottomUserID = bottom.getInt(1);
+				String statement = "SELECT Warnings FROM StudentWorker WHERE UserID =" + bottomUserID;
+				ResultSet rs = stmt.executeQuery(statement);
+				while (rs.next()){
+					int warnings = rs.getInt(1);
+					warnings++;
+					String updateWarnings = "UPDATE StudentWorker SET Warnings =" + warnings + "WHERE UserID =" + bottomUserID;		
+				}						
+
+		    }catch(SQLException e) {
+			 e.printStackTrace();
+		     }
+		
+	 }
   }
 	
