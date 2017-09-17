@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPasswordField;
 import java.awt.Color;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 /**
@@ -97,7 +99,8 @@ public class GraphicalUserInterface extends JFrame  {
 		
 		btnLogin = new JButton("Login");
 		btnLogin.setBounds(162, 261, 96, 22);
-		btnLogin.setVisible(false);
+		btnLogin.setVisible(true);
+	
 		contentPane.add(btnLogin);
 		
 		lblPrompt = new JLabel("Don't have an account?");
@@ -107,7 +110,7 @@ public class GraphicalUserInterface extends JFrame  {
 		btnCreateAccount = new JButton("Create Account>>");
 		btnCreateAccount.setBounds(6, 343, 160, 29);
 		contentPane.add(btnCreateAccount);
-		
+		btnCreateAccount.setVisible(true);
 		
 		
 		/**
@@ -118,8 +121,9 @@ public class GraphicalUserInterface extends JFrame  {
 			
 			public void actionPerformed(ActionEvent event)
 			{
-				btnLogin.setVisible(true);
+				 btnLogin.setVisible(false);
 			    createAccount();//method to take to create account window
+			   
 	        }
 		});
 		
@@ -141,6 +145,7 @@ public class GraphicalUserInterface extends JFrame  {
 		accountPane.setLayout(null);
 		
 		
+		
 		supervisorButton= new JRadioButton("Supervisor");
 		supervisorButton.setBounds(140, 148, 135, 32);
 		accountPane.add(supervisorButton);
@@ -149,8 +154,14 @@ public class GraphicalUserInterface extends JFrame  {
 		studentWorkerButton.setBounds(140, 207, 135, 32);
 		accountPane.add(studentWorkerButton);
 		
+		ButtonGroup optionsButtonGroup= new ButtonGroup();
+		optionsButtonGroup.add(studentWorkerButton);
+		optionsButtonGroup.add(supervisorButton);
 		
-		JLabel lblRoleSelection = new JLabel("      Select your role below:");
+		
+		
+		
+		JLabel lblRoleSelection = new JLabel("      Create Account");
 		lblRoleSelection.setBounds(6, 70, 338, 38);
 		lblRoleSelection.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 15));
 		accountPane.add(lblRoleSelection);
@@ -190,7 +201,7 @@ public class GraphicalUserInterface extends JFrame  {
 		btnBack.setBounds(207,343,117,29);
 		accountPane.add(btnBack);
 
-	
+	/*
 		btnBack.addActionListener(new ActionListener()
 		{
 			
@@ -200,7 +211,7 @@ public class GraphicalUserInterface extends JFrame  {
 				
 	        }
 		});
-		
+		*/
 		
 		
 		
