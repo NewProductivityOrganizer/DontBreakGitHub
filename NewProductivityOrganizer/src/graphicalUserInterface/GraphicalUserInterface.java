@@ -160,7 +160,7 @@ public class GraphicalUserInterface extends JFrame  {
 		btnNext = new JButton("Proceed>>");
 		btnNext.setBounds(6, 343, 160, 29);
 		accountPane.add(btnNext);
-		//btnNext.setVisible(false);
+		btnNext.setVisible(true);
 		
 		
 		/**
@@ -173,8 +173,10 @@ public class GraphicalUserInterface extends JFrame  {
 			
 			public void actionPerformed(ActionEvent event)
 			{
-			  	
-			  individualAccount();//method to take to create account window
+			  if((event.getSource()==supervisorButton) ||(event.getSource() == studentWorkerButton)) {
+				  btnNext.setVisible(false);
+			      individualAccount();//method to take to create account window
+			  }
 	        }
 		});
 		
