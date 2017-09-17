@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPasswordField;
 import java.awt.Color;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 /**
@@ -36,9 +38,11 @@ public class GraphicalUserInterface extends JFrame  {
 	private JButton btnLogin;
 	private JLabel lblPrompt;
 	private JButton btnCreateAccount;
-	private JButton btnProceed;
+	private JButton btnNext;
+	private JButton btnBack;
 	private JRadioButton supervisorButton;
 	private JRadioButton studentWorkerButton;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -95,7 +99,8 @@ public class GraphicalUserInterface extends JFrame  {
 		
 		btnLogin = new JButton("Login");
 		btnLogin.setBounds(162, 261, 96, 22);
-		btnLogin.setVisible(false);
+		btnLogin.setVisible(true);
+	
 		contentPane.add(btnLogin);
 		
 		lblPrompt = new JLabel("Don't have an account?");
@@ -105,6 +110,8 @@ public class GraphicalUserInterface extends JFrame  {
 		btnCreateAccount = new JButton("Create Account>>");
 		btnCreateAccount.setBounds(6, 343, 160, 29);
 		contentPane.add(btnCreateAccount);
+		btnCreateAccount.setVisible(true);
+		
 		
 		/**
 		 * ActionListener for the create account button*/
@@ -114,8 +121,9 @@ public class GraphicalUserInterface extends JFrame  {
 			
 			public void actionPerformed(ActionEvent event)
 			{
-				btnLogin.setVisible(true);
-			  createAccount();//method to take to create account window
+				 btnLogin.setVisible(false);
+			    createAccount();//method to take to create account window
+			   
 	        }
 		});
 		
@@ -137,6 +145,7 @@ public class GraphicalUserInterface extends JFrame  {
 		accountPane.setLayout(null);
 		
 		
+		
 		supervisorButton= new JRadioButton("Supervisor");
 		supervisorButton.setBounds(140, 148, 135, 32);
 		accountPane.add(supervisorButton);
@@ -145,31 +154,66 @@ public class GraphicalUserInterface extends JFrame  {
 		studentWorkerButton.setBounds(140, 207, 135, 32);
 		accountPane.add(studentWorkerButton);
 		
+		ButtonGroup optionsButtonGroup= new ButtonGroup();
+		optionsButtonGroup.add(studentWorkerButton);
+		optionsButtonGroup.add(supervisorButton);
 		
-		JLabel lblRoleSelection = new JLabel("      Select your role below:");
+		
+		
+		
+		JLabel lblRoleSelection = new JLabel("      Create Account");
 		lblRoleSelection.setBounds(6, 70, 338, 38);
 		lblRoleSelection.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 15));
 		accountPane.add(lblRoleSelection);
 		
+	
 		
-		btnProceed = new JButton("Proceed>>");
-		btnProceed.setBounds(6, 343, 160, 29);
-		accountPane.add(btnProceed);
+		btnNext = new JButton("Proceed>>");
+		btnNext.setBounds(6, 343, 160, 29);
+		accountPane.add(btnNext);
+		btnNext.setVisible(true);
+		
 		
 		/**
 		 * Action Listener for proceed button
 		 * FIX this
 		 * */
 		
-		btnProceed.addActionListener(new ActionListener()
+		btnNext.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+			  if((event.getSource()==supervisorButton) ||(event.getSource() == studentWorkerButton)) {
+				  btnNext.setVisible(false);
+			      individualAccount();//method to take to create account window
+			  }
+	        }
+		});
+		
+		
+		/**
+		 * Action Listener for back button
+		 * FIX this
+		 * */
+		
+		btnBack = new JButton("<<Back");
+		btnBack.setBounds(207,343,117,29);
+		accountPane.add(btnBack);
+
+	/*
+		btnBack.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent event)
 			{
 				
-			  individualAccount();//method to take to create account window
+				
 	        }
 		});
+		*/
+		
+		
 		
 		
 		
