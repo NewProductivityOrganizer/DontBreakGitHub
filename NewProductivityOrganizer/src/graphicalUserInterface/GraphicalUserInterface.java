@@ -542,7 +542,7 @@ public void logInStudent() {
 			public void actionPerformed(ActionEvent event)
 			{
 				
-				//btnNext.setVisible(false);
+				
 				createAccount(); 
 		
 	        }
