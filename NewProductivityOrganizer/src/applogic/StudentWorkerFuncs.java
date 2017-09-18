@@ -139,7 +139,7 @@ public class StudentWorkerFuncs {
 	 * Display Badge completed by this student worker
 	 */
 	public void DisplayMyBadge() {
-		String myCompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + "AND BadgeStatus = 'Completed'";
+		String myCompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + " AND BadgeStatus = 'Completed'";
 		List<Badge> badgeList = getAndPrintBadgeInfo(myCompletedBadge);
 		printBadge(badgeList);
 	}
@@ -240,5 +240,13 @@ public class StudentWorkerFuncs {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//Just to test student worker functions in console;
+	public static void main(String [] args) {
+		StudentWorkerFuncs studentWorker1 = new StudentWorkerFuncs(1);
+		studentWorker1.checkMyPerformance();
+		studentWorker1.DisplayMyBadge();
+		studentWorker1.DisplayUncompletedBadge();
 	}
 }
