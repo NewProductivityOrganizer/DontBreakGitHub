@@ -408,7 +408,98 @@ public void logInStudent() {
 		});
 	    
 	    
+	    displayLeadingBoard.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+				display.setText("");
+				String words = "Display Leading";
+				display.setText(words);
+				 
+		
+	        }
+		});
 	    
+	    displayIncompleteBadges.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+				display.setText("");
+				String words = "Incomplete Badges";
+				display.setText(words);
+				 
+		
+	        }
+		});
+	    
+	    displayMyPerformance.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+				display.setText("");
+				String words = "display performance";
+				display.setText(words);
+				 
+		
+	        }
+		});   
+	    
+	    displayMyBadgeInProgress.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+				display.setText("");
+				String words = "Badge(s) in progress";
+				display.setText(words);
+				 
+		
+	        }
+		});    
+	    
+	   createNewBadge.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+				display.setText("");
+				String words = "Create new badge";
+				display.setText(words);
+				 
+		
+	        }
+		});
+	   
+	   applyForBadge.addActionListener(new ActionListener()
+	 		{
+	 			
+	 			public void actionPerformed(ActionEvent event)
+	 			{
+	 				display.setText("");
+	 				String words = "Apply for badge";
+	 				display.setText(words);
+	 				 
+	 		
+	 	        }
+	 		});  
+	   
+	   undoMyPreviousAction.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+				display.setText("");
+				String words = "Undo  previous action";
+				display.setText(words);
+				 
+		
+	        }
+		});  
+  
+	   
 	    
 	    
 	    
