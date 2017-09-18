@@ -39,6 +39,7 @@ public class GraphicalUserInterface extends JFrame  {
 	private JPanel accountPane;//panel for create account
 	private JPanel supervisorAccountPane;//pane for individual accounts
 	private JPanel studentworkerAccountPane;
+	private JPanel studentLoginPane;
 	private JTextField username;
 	private JTextField name;
 	private JPasswordField passwordField;
@@ -48,7 +49,15 @@ public class GraphicalUserInterface extends JFrame  {
 	private JButton btnCreateAccount;
 	private JButton btnNext;
 	private JButton btnBack;
+	private JButton displayLeadingBoard;
+	private JButton displayMyBadge;
+	private JButton displayIncompleteBadges;
+	private JButton displayMyPerformance;
 	private JRadioButton supervisorButton;
+	private JButton displayMyBadgeInProgress;
+	private JButton createNewBadge;
+	private JButton applyForBadge;
+	private JButton undoMyPreviousAction;
 	private JRadioButton studentWorkerButton;
 	private JButton btnNewButton;
 	private char [] password;
@@ -64,7 +73,7 @@ public class GraphicalUserInterface extends JFrame  {
 			public void run() {
 				try {
 					GraphicalUserInterface frame = new GraphicalUserInterface();
-					
+					//frame.logInStudent();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -174,13 +183,11 @@ public class GraphicalUserInterface extends JFrame  {
 			      password = passwordField.getPassword();//password input
 			     
 			      String passwordInString = new String(password);
-			     
-			      System.out.println("UserName: "+userName+"Password:"+  passwordInString);
 			      
 			      mainClass.LogIn(userName, passwordInString);
+			      //logInStudent();
 			      
 			} 
-			
 	        }
 		}); 
 		
@@ -296,7 +303,77 @@ public class GraphicalUserInterface extends JFrame  {
 		
 	}
 	
+public void logInStudent() {
 	
+	setTitle("Welcome Back!");
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setBounds(200, 200,350, 400);
+	studentLoginPane = new JPanel();
+	studentLoginPane.setBackground(new Color(205, 133, 63));
+	studentLoginPane.setForeground(Color.BLACK);
+	studentLoginPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	setContentPane(studentLoginPane);
+	studentLoginPane.setLayout(null);
+	
+	 displayLeadingBoard = new JButton("displayLeadingBoard");
+	 displayLeadingBoard.setBounds(207,315,117,29);
+	 studentLoginPane.add( displayLeadingBoard );
+	 displayLeadingBoard.setVisible(true);
+	 
+	 
+	 
+	 displayMyBadge = new JButton("displayMyBadge");
+	 displayMyBadge.setBounds(207,310,117,29);
+	 studentLoginPane.add( displayMyBadge );
+	 displayMyBadge.setVisible(true);
+	 
+	 
+     
+	 displayIncompleteBadges = new JButton("displayIncompleteBadge");
+	 displayIncompleteBadges.setBounds(207,320,117,29);
+	 studentLoginPane.add( displayIncompleteBadges );
+	 displayIncompleteBadges.setVisible(true);
+	 
+     
+     
+     displayMyPerformance =  new JButton("displayMyPerformance"); 
+     displayMyPerformance.setBounds(207,330,117,29);
+	 studentLoginPane.add(  displayMyPerformance );
+	  displayMyPerformance.setVisible(true);
+     
+	 
+	 
+	 displayMyBadgeInProgress = new JButton("displayMyBadgeInProgress");
+	 displayMyBadgeInProgress.setBounds(207,345,117,29);
+	 studentLoginPane.add( displayMyBadgeInProgress );
+	 displayMyBadgeInProgress.setVisible(true);
+	    
+	 
+	 
+	 
+	 
+	 createNewBadge =new JButton("createNewBadge");
+	 createNewBadge.setBounds(207,340,117,29);
+	 studentLoginPane.add( createNewBadge );
+	 createNewBadge .setVisible(true);
+	  
+	 
+	 
+	 
+	 
+	    applyForBadge = new JButton("applyForBadge");
+	    applyForBadge.setBounds(207,345,117,29);
+	    studentLoginPane.add(applyForBadge );
+		applyForBadge .setVisible(true);
+	 
+	  
+	    undoMyPreviousAction = new JButton ("undoMyPreviousAction");
+	    undoMyPreviousAction.setBounds(207,350,117,29);
+	    studentLoginPane.add(btnBack);
+		btnBack.setVisible(true);
+	
+	
+}
 	/**
 	 * Create interface for supervisor Account
 	 * */
