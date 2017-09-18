@@ -17,6 +17,11 @@ public class SupervisorFuncs {
 	public SupervisorFuncs(int userId) {
 		this.userId = userId;
 	}
+	/** 
+	 * The getTopTen method returns a list of the top ten student workers with
+	 * the highest number of points
+	 * @return studentWorkerList
+	 */
 	
 	public List<Integer> getTopTen() {
 		List<Integer> studentWorkerList = new ArrayList<Integer>();
@@ -40,6 +45,12 @@ public class SupervisorFuncs {
 		return studentWorkerList;
 	}
 	
+	/**
+	 * The GetHalfAvg method finds half of the average number of points
+	 * student workers have
+	 * @return pointAverage/2
+	 */
+	
 	public int GetHalfAvg() {
 		int pointAverage = 0;
 		try (
@@ -60,6 +71,13 @@ public class SupervisorFuncs {
 		}
 		return (pointAverage/2);
 	}
+	
+	/**
+	 * the getBadStudentWorker method returns a list of student workers whose
+	 * Points are below a given threshold 
+	 * @param threshold
+	 * @return badStudentWorker
+	 */
 	
 	public List<Integer> getBadStudentWorker(int threshold){
 		List<Integer> badStudentWorker = new ArrayList<Integer>();
@@ -88,6 +106,10 @@ public class SupervisorFuncs {
 		GiveWarnings();
 	}
 	
+	/**
+	 * The GiveAwards method is responsible for incrementing the number of Awards a
+	 * student worker has by +1
+	 */
 	public void GiveAwards() {
 		List<Integer> topTenStudentWorker = getTopTen();
 		for (int topTenUserID : topTenStudentWorker) {
@@ -96,6 +118,10 @@ public class SupervisorFuncs {
 		}
 	}
 	
+	/** 
+	 * The GiveWarnings method is responsible for incrementing the number of Warnings a 
+	 * student worker has by +1
+	 */
 	public void GiveWarnings() {
 		int threshold = GetHalfAvg();
 		List<Integer> badStudentWorker = getBadStudentWorker(threshold);
@@ -105,7 +131,7 @@ public class SupervisorFuncs {
 		}
 	}
 	/**
-	 * method takes in a statement and execute it in MySql
+	 * The editDatabase method takes in a statement and executes it in MySql
 	 * @param statement
 	 */
 	public  void editDatabase(String statement) {
@@ -135,7 +161,8 @@ public class SupervisorFuncs {
 	}
 	
 	/**
-	 * Method used to get all the unapproved new badge in the database and put them in a dictionary
+	 * The getBadgeDictionary method is used to get all the unapproved new badges
+	 *  in the database and put them in a dictionary
 	 * @return dictionary of unapproved new badges
 	 */
 	public HashMap<Integer, Badge> getBadgeDictionary(){
@@ -168,7 +195,7 @@ public class SupervisorFuncs {
 	}
 	
 	/**
-	 * taking user's choice of badge
+	 * The getBadgeChoice method is responsible for taking the user's choice of badge
 	 * @param size of badge dictionary
 	 * @return badge chosen
 	 */
@@ -204,7 +231,8 @@ public class SupervisorFuncs {
 	}
 	
 	/**
-	 * Approve student-create new badge and put it into System
+	 * The ApproveNewBadge method approves student-created new badges and puts 
+	 * them into the database
 	 */
 	public void ApproveNewBadge() {
 		Badge badge = DisplayNewBadgeInProcess();
