@@ -1,3 +1,4 @@
+package applogic;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,7 +41,7 @@ public class ProductivityIncentivizer {
 	* @return ArrayList<String> loginInfo
 	*/
 	
-	public ArrayList<String> LogInUserInput(){
+	/*public ArrayList<String> LogInUserInput(){
 		ArrayList<String> loginInfo = new ArrayList<String>();
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter your username");
@@ -50,14 +51,14 @@ public class ProductivityIncentivizer {
 	    String enteredPassword = in.nextLine();
 	    loginInfo.add(enteredPassword);
 	    return loginInfo;
-	}
+	}*/
 	/**
 	* This logIn() method uses the username and password from the logInHelper() method and
 	* returns the corresponding userID
 	* @return int userID
 	*/
 	
-	public void LogIn(){
+	public void LogIn(String enteredUserName, String enteredPassword){
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
@@ -68,9 +69,9 @@ public class ProductivityIncentivizer {
 				) {
 			boolean rightLogIn = false;
 			while (!rightLogIn) {
-				ArrayList<String> logInUserInput = LogInUserInput();
+				/*ArrayList<String> logInUserInput = LogInUserInput();
 				String enteredUserName = logInUserInput.get(0);
-				String enteredPassword = logInUserInput.get(1);
+				String enteredPassword = logInUserInput.get(1);*/
 			    String statement = "SELECT UserID,UserIdentity FROM LogInInformation WHERE UserName = '" + enteredUserName + "' AND UserPassword ='" + enteredPassword + "'";
 			    ResultSet rs = stmt.executeQuery(statement);
 			    if (rs.next()){
@@ -262,7 +263,7 @@ public class ProductivityIncentivizer {
 		int startChoice = StartMenu();
 		switch (startChoice) {
 		case 1:
-			LogIn();
+			//LogIn();
 			break;
 		case 2:
 			promptUserToCreateAccount();
@@ -287,8 +288,8 @@ public class ProductivityIncentivizer {
 /**
  * change name of the gui*/
 	public static void main(String[] args) {
-		/*GraphicalUserInterface gui = new GraphicalUserInterface();
-		
+		GraphicalUserInterface gui = new GraphicalUserInterface();
+		 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -298,7 +299,7 @@ public class ProductivityIncentivizer {
 					e.printStackTrace();
 				}
 			}
-		});*/
+		});
 		
 		
 		ProductivityIncentivizer runProgram = new ProductivityIncentivizer();

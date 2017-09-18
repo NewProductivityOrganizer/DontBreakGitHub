@@ -1,3 +1,4 @@
+package applogic;
 /**
  * Factory creates student worker accounts and supervisor accounts
  */

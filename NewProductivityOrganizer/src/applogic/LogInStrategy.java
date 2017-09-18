@@ -1,3 +1,4 @@
+package applogic;
 
 public interface LogInStrategy {
 	/**

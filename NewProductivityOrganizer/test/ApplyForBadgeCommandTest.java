@@ -2,6 +2,8 @@ import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import applogic.Badge;
 /**
  * Tests for ApplyCommandTest which test for a badge status
  * null should return true because it has to be an empty status which is then changed to in progress

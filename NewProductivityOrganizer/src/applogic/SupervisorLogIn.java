@@ -1,3 +1,4 @@
+package applogic;
 
 public class SupervisorLogIn implements LogInStrategy {
 
