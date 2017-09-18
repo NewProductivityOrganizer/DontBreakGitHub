@@ -673,7 +673,6 @@ public void logInStudent() {
 			public void actionPerformed(ActionEvent event)
 			{
 				
-				
 				createAccount(); 
 		
 	        }
