@@ -58,7 +58,7 @@ public class ProductivityIncentivizer {
 	* @return int userID
 	*/
 	
-	public void LogIn(String enteredUserName, String enteredPassword){
+	public boolean LogIn(String enteredUserName, String enteredPassword){
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
@@ -67,8 +67,6 @@ public class ProductivityIncentivizer {
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
-			boolean rightLogIn = false;
-			while (!rightLogIn) {
 				/*ArrayList<String> logInUserInput = LogInUserInput();
 				String enteredUserName = logInUserInput.get(0);
 				String enteredPassword = logInUserInput.get(1);*/
@@ -78,15 +76,16 @@ public class ProductivityIncentivizer {
 			    		int userId = rs.getInt(1);
 			    		String userIdentity = rs.getString(2);
 			    		LogInHelper(userIdentity, userId);
-			    		rightLogIn = true;
+			    		return true;
 			    } 
 			    else{
 			    		System.out.println("Wrong username or password");
+			    		return false;
 			    }
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 	 }
+		return false;
    }
 	
 	public void LogInHelper(String userIdentity, int userId) {

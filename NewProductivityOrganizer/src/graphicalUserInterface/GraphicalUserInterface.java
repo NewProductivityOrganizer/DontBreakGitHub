@@ -74,7 +74,8 @@ public class GraphicalUserInterface extends JFrame  {
 			public void run() {
 				try {
 					GraphicalUserInterface frame = new GraphicalUserInterface();
-					frame.logInStudent();
+					//frame.logInStudent();
+					frame.welcomeFrame(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,7 +87,6 @@ public class GraphicalUserInterface extends JFrame  {
 	
 	public GraphicalUserInterface() {
 	
-		welcomeFrame();
 
 	}
 	
@@ -95,7 +95,7 @@ public class GraphicalUserInterface extends JFrame  {
 	 * Create the Welcome frame.
 	 * i.e the first thing the User sees when they start running the system
 	 */
-	public void welcomeFrame() {
+	public void welcomeFrame(boolean isValid) {
 		
 		setTitle("Productivity Incentivizer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,6 +117,11 @@ public class GraphicalUserInterface extends JFrame  {
 		contentPane.add(username);
 		username.setColumns(10);
 		
+		if (!isValid) {
+			lblPrompt = new JLabel("Wrong User Name or Passord");
+			lblPrompt.setBounds(49, 110, 200, 16);
+			contentPane.add(lblPrompt);
+		}
 	
 		JLabel lblUSERNAME = new JLabel("USERNAME");
 		lblUSERNAME.setBounds(49, 156, 79, 16);
@@ -181,14 +186,19 @@ public class GraphicalUserInterface extends JFrame  {
 			
 			public void actionPerformed(ActionEvent event)
 			{
-				 
 				if(event.getSource() == btnLogin) {   
 			      String userName = username.getText();
 			      password = passwordField.getPassword();//password input
 			     
 			      String passwordInString = new String(password);
 			      
-			      mainClass.LogIn(userName, passwordInString);
+			      boolean checkValid = mainClass.LogIn(userName, passwordInString);
+			      if (!checkValid) {
+			    	  welcomeFrame(false);
+			      }
+			      else {
+			    	  logInStudent();
+			      }
 			      //logInStudent();
 			      
 			} 
@@ -298,7 +308,7 @@ public class GraphicalUserInterface extends JFrame  {
 			public void actionPerformed(ActionEvent event)
 			{
 				
-				welcomeFrame() ;//supposed to go back to the welcome frame
+				welcomeFrame(true) ;//supposed to go back to the welcome frame
 		
 	        }
 		});
