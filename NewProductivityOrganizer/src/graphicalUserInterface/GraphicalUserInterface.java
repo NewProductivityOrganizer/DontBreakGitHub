@@ -73,7 +73,7 @@ public class GraphicalUserInterface extends JFrame  {
 			public void run() {
 				try {
 					GraphicalUserInterface frame = new GraphicalUserInterface();
-					//frame.logInStudent();
+					frame.logInStudent();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -369,8 +369,8 @@ public void logInStudent() {
 	  
 	    undoMyPreviousAction = new JButton ("undoMyPreviousAction");
 	    undoMyPreviousAction.setBounds(207,350,117,29);
-	    studentLoginPane.add(btnBack);
-		btnBack.setVisible(true);
+	    studentLoginPane.add(undoMyPreviousAction );
+	    undoMyPreviousAction.setVisible(true);
 	
 	
 }
