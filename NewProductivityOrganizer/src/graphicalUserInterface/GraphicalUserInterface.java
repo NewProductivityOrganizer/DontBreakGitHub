@@ -42,6 +42,7 @@ public class GraphicalUserInterface extends JFrame  {
 	private JPanel studentLoginPane;
 	private JTextField username;
 	private JTextField name;
+	private JTextField display;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField2;
 	private JButton btnLogin;
@@ -59,7 +60,7 @@ public class GraphicalUserInterface extends JFrame  {
 	private JButton applyForBadge;
 	private JButton undoMyPreviousAction;
 	private JRadioButton studentWorkerButton;
-	private JButton btnNewButton;
+	//private JButton btnNewButton;
 	private char [] password;
 	
 	private ProductivityIncentivizer mainClass = new ProductivityIncentivizer();
@@ -73,7 +74,7 @@ public class GraphicalUserInterface extends JFrame  {
 			public void run() {
 				try {
 					GraphicalUserInterface frame = new GraphicalUserInterface();
-					//frame.logInStudent();
+					frame.logInStudent();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,15 +83,18 @@ public class GraphicalUserInterface extends JFrame  {
 		});
 	}
 
-	/**
-	 * Create the Welcome frame.
-	 */
+	
 	public GraphicalUserInterface() {
 	
 		welcomeFrame();
 
 	}
 	
+	
+	/**
+	 * Create the Welcome frame.
+	 * i.e the first thing the User sees when they start running the system
+	 */
 	public void welcomeFrame() {
 		
 		setTitle("Productivity Incentivizer");
@@ -307,7 +311,7 @@ public void logInStudent() {
 	
 	setTitle("Welcome Back!");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(200, 200,350, 400);
+	setBounds(200, 200,900, 600);
 	studentLoginPane = new JPanel();
 	studentLoginPane.setBackground(new Color(205, 133, 63));
 	studentLoginPane.setForeground(Color.BLACK);
@@ -315,36 +319,50 @@ public void logInStudent() {
 	setContentPane(studentLoginPane);
 	studentLoginPane.setLayout(null);
 	
+	
+
+	JLabel lblTitle = new JLabel(" WELCOME BACK  ");
+	lblTitle.setBounds(400, 70, 338, 38);
+	lblTitle.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 16));
+	studentLoginPane.add(lblTitle);
+	
+	
+	display = new JTextField(" ");
+	display.setBounds(400, 148, 400, 300);
+	studentLoginPane.add(display);
+	display.setColumns(10);
+	
+	
 	 displayLeadingBoard = new JButton("displayLeadingBoard");
-	 displayLeadingBoard.setBounds(207,315,117,29);
+	 displayLeadingBoard.setBounds(58,150,200,29);
 	 studentLoginPane.add( displayLeadingBoard );
 	 displayLeadingBoard.setVisible(true);
 	 
+	
 	 
-	 
-	 displayMyBadge = new JButton("displayMyBadge");
-	 displayMyBadge.setBounds(207,310,117,29);
+	 displayMyBadge = new JButton("displayMyBadges");
+	 displayMyBadge.setBounds(60,250,200,29);
 	 studentLoginPane.add( displayMyBadge );
 	 displayMyBadge.setVisible(true);
 	 
 	 
      
 	 displayIncompleteBadges = new JButton("displayIncompleteBadge");
-	 displayIncompleteBadges.setBounds(207,320,117,29);
+	 displayIncompleteBadges.setBounds(62,200,200,29);
 	 studentLoginPane.add( displayIncompleteBadges );
 	 displayIncompleteBadges.setVisible(true);
 	 
      
      
      displayMyPerformance =  new JButton("displayMyPerformance"); 
-     displayMyPerformance.setBounds(207,330,117,29);
+     displayMyPerformance.setBounds(64,250,200,29);
 	 studentLoginPane.add(  displayMyPerformance );
 	  displayMyPerformance.setVisible(true);
      
 	 
 	 
 	 displayMyBadgeInProgress = new JButton("displayMyBadgeInProgress");
-	 displayMyBadgeInProgress.setBounds(207,345,117,29);
+	 displayMyBadgeInProgress.setBounds(66,300,200,29);
 	 studentLoginPane.add( displayMyBadgeInProgress );
 	 displayMyBadgeInProgress.setVisible(true);
 	    
@@ -353,7 +371,7 @@ public void logInStudent() {
 	 
 	 
 	 createNewBadge =new JButton("createNewBadge");
-	 createNewBadge.setBounds(207,340,117,29);
+	 createNewBadge.setBounds(68,350,200,29);
 	 studentLoginPane.add( createNewBadge );
 	 createNewBadge .setVisible(true);
 	  
@@ -362,16 +380,38 @@ public void logInStudent() {
 	 
 	 
 	    applyForBadge = new JButton("applyForBadge");
-	    applyForBadge.setBounds(207,345,117,29);
+	    applyForBadge.setBounds(70,400,200,29);
 	    studentLoginPane.add(applyForBadge );
 		applyForBadge .setVisible(true);
 	 
 	  
 	    undoMyPreviousAction = new JButton ("undoMyPreviousAction");
-	    undoMyPreviousAction.setBounds(207,350,117,29);
-	    studentLoginPane.add(btnBack);
-		btnBack.setVisible(true);
+	    undoMyPreviousAction.setBounds(72,450,200,29);
+	    studentLoginPane.add(undoMyPreviousAction);
+	    undoMyPreviousAction.setVisible(true);
 	
+	    
+	    /**
+	     * Action Listener for displayBadge button
+	     * */
+	    displayMyBadge.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent event)
+			{
+				display.setText("");
+				String words = "Display List of Badges";
+				display.setText(words);
+				 
+		
+	        }
+		});
+	    
+	    
+	    
+	    
+	    
+	    
 	
 }
 	/**
