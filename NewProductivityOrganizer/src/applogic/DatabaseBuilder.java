@@ -1,4 +1,9 @@
 package applogic;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,6 +14,21 @@ import java.sql.Statement;
  */
 public class DatabaseBuilder {
 	public static final String PORT_NUMBER = "8889";
+	
+	public static void InsertData (String statement) {
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				){
+			stmt.execute(statement);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
 		//Build up a new database for ProductivityIncentizer
@@ -47,17 +67,13 @@ public class DatabaseBuilder {
 					"primary key(UserID));"; 
 			
 			String createStudentWorker = "create table StudentWorker ( " +
-					"UserName varchar(10), " +
 					"UserID int, " +
 					"ActualName varchar(50), " +
 					"Warnings int, " +
 					"Awards int, " +
-					"Point int, " +
-					"BadgesEarned varchar(80), " +
-					"BadgesInProcess varchar(50))";
+					"Point int)";
 			
 			String createSupervisor = "create table Supervisor ( " +
-					"UserName varchar(10), " +
 					"UserID int," +
 					"ActualName varchar(50))";
 			
@@ -68,8 +84,9 @@ public class DatabaseBuilder {
 					"ApproveUserID int," +
 					"BadgeID int AUTO_INCREMENT, " +
 					"ClaimingUserID int,"+
-					"ApproveClaminUserID int,"+
+					"ApproveClaimUserID int,"+
 					"BadgeStatus varchar(50) NOT NULL," +
+					"BadgePoint int," +
 					"primary key (BadgeID), " +
 					"UNIQUE (BadgeName))";
 			
@@ -90,6 +107,20 @@ public class DatabaseBuilder {
 			
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+		}
+		
+		try {
+			Reader fakeDataFileReader = new FileReader("FakeData.csv");
+			BufferedReader fakeDataReader = new BufferedReader(fakeDataFileReader);
+			String statement = fakeDataReader.readLine();
+			while (statement != null) {
+				InsertData(statement);
+				statement=fakeDataReader.readLine();
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

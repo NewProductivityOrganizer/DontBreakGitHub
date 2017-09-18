@@ -1,0 +1,10 @@
+INSERT INTO Badge (BadgeName, BadgeDescription, CreatorUserID, ApproveUserID, ClaimingUserID, ApproveClaimUserID, BadgeStatus, BadgePoint) VALUES ('Badge1','Description1',1,2,1,null,'InProgress',10);
+INSERT INTO Badge (BadgeName, BadgeDescription, CreatorUserID, ApproveUserID, ClaimingUserID, ApproveClaimUserID, BadgeStatus, BadgePoint) VALUES ('Badge2','Description2',1,2,1,2,'Completed',9);
+INSERT INTO Badge (BadgeName, BadgeDescription, CreatorUserID, ApproveUserID, ClaimingUserID, ApproveClaimUserID, BadgeStatus, BadgePoint) VALUES ('Badge3','Description3',1,null,null,null,'Waiting',7);
+INSERT INTO Badge (BadgeName, BadgeDescription, CreatorUserID, ApproveUserID, ClaimingUserID, ApproveClaimUserID, BadgeStatus, BadgePoint) VALUES ('Badge4','Description4',1,2,null,null,'Uncompleted',8);
+INSERT INTO Supervisor VALUES (2, 'Supervisor1');
+INSERT INTO StudentWorker VALUES (1,'StudentWorker1',2,1,9);
+INSERT INTO StudentWorker VALUES (3,'StudentWorker2',8,0,0);
+INSERT INTO LogInInformation (UserName, UserPassword, UserIdentity) VALUES ('SW1','12345abc','StudentWorker');
+INSERT INTO LogInInformation (UserName, UserPassword, UserIdentity) VALUES ('BOSS1','12345abc','Supervisor');
+INSERT INTO LogInInformation (UserName, UserPassword, UserIdentity) VALUES ('SW2','12345abc','StudentWorker');

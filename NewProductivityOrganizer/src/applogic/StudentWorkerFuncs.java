@@ -60,7 +60,7 @@ public class StudentWorkerFuncs {
 	}
 	
 	/**
-	 * 
+	 * Undo the last action with badges
 	 */
 	public void UndoApplication() {
 		BadgeCommand command = commandStack.pop();
@@ -72,7 +72,7 @@ public class StudentWorkerFuncs {
 	 * @param creatorUserId
 	 * @param BadgeName
 	 * @param BadgeDescription
-	 * @return
+	 * @return BadgeID
 	 */
 	public int AddNewBadge(int creatorUserId, String BadgeName, String BadgeDescription) {
 		int badgeId = 0;
@@ -107,7 +107,7 @@ public class StudentWorkerFuncs {
 	}
 	
 	/**
-	 * 
+	 * Method used to change the Badge Status after someone applied for the badge
 	 */
 	public void ChangeAppliedBadgeStatus(int badgeId) {
 		String changeBadgeStatus = "UPDATE Badge SET BadgeStatus = 'InProgress' WHERE BadgeID = " +badgeId;
@@ -117,7 +117,8 @@ public class StudentWorkerFuncs {
 	}
 	
 	/**
-	 * 
+	 * method takes in badgeId to change the badge status back to uncompleted
+	 * @param badgeId
 	 */
 	public void UndoAppliedBadge(int badgeId) {
 		String undoApplication = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = "+ badgeId;
@@ -131,7 +132,7 @@ public class StudentWorkerFuncs {
 	 */
 	public void DisplayUncompletedBadge() {
 			String getUncompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'Uncompleted'";
-			List<Badge> badgeList = getAndPrintBadgeInfo(getUncompletedBadge);
+			List<Badge> badgeList = getBadgeInfo(getUncompletedBadge);
 			printBadge(badgeList);
 	}
 	
@@ -140,16 +141,16 @@ public class StudentWorkerFuncs {
 	 */
 	public void DisplayMyBadge() {
 		String myCompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + " AND BadgeStatus = 'Completed'";
-		List<Badge> badgeList = getAndPrintBadgeInfo(myCompletedBadge);
+		List<Badge> badgeList = getBadgeInfo(myCompletedBadge);
 		printBadge(badgeList);
 	}
 	
 	/**
-	 * 
+	 * Display Badge completed by this student worker
 	 */
 	public void DisplayMyBadgeInProcess() {
 		String myBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + "AND BadgeStatus = 'InProcess'";
-		List<Badge> badgeList = getAndPrintBadgeInfo(myBadgeInProcess);
+		List<Badge> badgeList = getBadgeInfo(myBadgeInProcess);
 		printBadge(badgeList);
 	}
 	
@@ -158,7 +159,7 @@ public class StudentWorkerFuncs {
 	 * @param statement for sql stored as String
 	 * @return list of badges matches the requirements
 	 */
-	public List<Badge> getAndPrintBadgeInfo(String statement) {
+	public List<Badge> getBadgeInfo(String statement) {
 		List<Badge> badgeList = new ArrayList<Badge>();
 		try (
 				// Step 1: Allocate a database "Connection" object
@@ -169,9 +170,7 @@ public class StudentWorkerFuncs {
 				Statement stmt = conn.createStatement();
 				) {
 			ResultSet badges = stmt.executeQuery(statement);
-			int badgeIndex = 0;
 			while (badges.next()) {
-				badgeIndex += 1;
 				int badgeID = badges.getInt(1);
 				String badgeName = badges.getString(2);
 				String badgeDescription = badges.getString(3);

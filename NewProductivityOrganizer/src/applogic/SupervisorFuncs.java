@@ -177,7 +177,7 @@ public class SupervisorFuncs {
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
-			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'blabla'";
+			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'Waiting'";
 			ResultSet newBadgeInProcess = stmt.executeQuery(getNewBadgeInProcess);
 			while (newBadgeInProcess.next()){
 				badgeIndex += 1;

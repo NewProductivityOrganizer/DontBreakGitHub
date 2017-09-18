@@ -30,7 +30,7 @@ public class CreateAccountTest {
 	public void testSupervisorCreateAccount() { 
 		SupervisorAccount accountTest = new SupervisorAccount();
 		accountTest.createAccount("Leah", "", "");
-		assertEquals(accountTest.getSupervisorName(), "Leah");
+		assertEquals(accountTest.getName(), "Leah");
 	}
 	
 	@Test 
