@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import applogic.ProductivityIncentivizer;
+
 /**
  * tests for valid and invalid account creation
  * @author sophiemittelstadt

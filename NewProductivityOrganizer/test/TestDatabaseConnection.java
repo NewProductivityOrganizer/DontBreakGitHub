@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
+import applogic.Badge;
+import applogic.ProductivityIncentivizer;
+
 public class TestDatabaseConnection {
 
 	@Test

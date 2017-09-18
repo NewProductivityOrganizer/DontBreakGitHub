@@ -1,3 +1,4 @@
+package applogic;
 /**
  * Student worker account is one of the classes within AccountFactory
  */

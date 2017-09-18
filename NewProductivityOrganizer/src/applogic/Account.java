@@ -1,3 +1,4 @@
+package applogic;
 
 /**
  * Interface defines create and delete account

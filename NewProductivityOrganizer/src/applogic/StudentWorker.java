@@ -1,3 +1,4 @@
+package applogic;
 public class StudentWorker {
 	private int userID;
 	private String actualName;

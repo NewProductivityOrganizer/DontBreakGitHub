@@ -1,3 +1,4 @@
+package applogic;
 
 public class ApplyBadgeCommand implements BadgeCommand {
 	private int badgeId;

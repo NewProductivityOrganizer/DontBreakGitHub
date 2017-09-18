@@ -2,6 +2,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import applogic.StudentWorkerAccount;
+import applogic.SupervisorAccount;
+
 /**
  * simple tests to check that create accounts for both student workers and supervisors works
  * checking that the getter methods work

@@ -1,3 +1,4 @@
+package applogic;
 import static org.junit.Assert.*;
 import java.util.Scanner;
 import java.io.ByteArrayInputStream;

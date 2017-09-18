@@ -1,3 +1,4 @@
+package applogic;
 
 public class LogInOperation {
 	private LogInStrategy logInStrategy;
