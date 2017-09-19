@@ -10,20 +10,22 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 
+/**
+ * 
+ */
 public class SupervisorFuncs {
 	private static final String PORT_NUMBER = "8889";
 	private int userId;
 	
-	
 	public SupervisorFuncs(int userId) {
 		this.userId = userId;
 	}
+	
 	/** 
 	 * The getTopTen method returns a list of the top ten student workers with
 	 * the highest number of points
 	 * @return studentWorkerList
 	 */
-	
 	public List<Integer> getTopTen() {
 		List<Integer> studentWorkerList = new ArrayList<Integer>();
 		try (
@@ -50,8 +52,7 @@ public class SupervisorFuncs {
 	 * The GetHalfAvg method finds half of the average number of points
 	 * student workers have
 	 * @return pointAverage/2
-	 */
-	
+	 */	
 	public int GetHalfAvg() {
 		int pointAverage = 0;
 		try (
@@ -102,6 +103,9 @@ public class SupervisorFuncs {
 		return badStudentWorker;
 	}
 	
+	/**
+	 * 
+	 */
 	public void AutoAssess() {
 		GiveAwards();
 		GiveWarnings();
@@ -240,6 +244,7 @@ public class SupervisorFuncs {
 		String approveNewBadge = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = " + badge.getBadgeId();
 		editDatabase(approveNewBadge);
 	}
+	
 	/**
 	 * The approvateBadgeApplication method takes in a badge awaiting approval,
 	 * and allows the Supervisor to either approve the badge (which updates the status

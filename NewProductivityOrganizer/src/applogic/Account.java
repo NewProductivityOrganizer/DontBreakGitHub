@@ -1,7 +1,7 @@
 package applogic;
 
 /**
- * Interface defines create and delete account
+ * Interface defines create and delete account, also has getters
  * Used by AccountFactory
  */
 public interface Account {

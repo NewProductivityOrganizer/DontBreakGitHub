@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+*/
 
 /**
  * Command used when student worker wants to create a badge
@@ -22,9 +22,18 @@ public class CreateBadgeCommand implements BadgeCommand{
 		this.badgeName = badgeName;
 		this.studentWorkerOperation = studentWorkerOperation;
 	}
+	
+	/**
+	 * calls AddNewBadge -- method that adds a badge when a student worker creates a badge
+	 * added badge status is 'Waiting' -- meaning it has not yet been approved by the supervisor
+	 */
 	public void execute() {
 		this.badgeId = studentWorkerOperation.AddNewBadge(this.creatorUserId, this.badgeName, this.badgeDescription);
 	}
+	
+	/**
+	 * calls UndoNewBadgeHelper, and removes badge from table by using badgeId
+	 */
 	public void undo() {
 		studentWorkerOperation.UndoNewBadgeHelper(badgeId);
 	}

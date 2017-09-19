@@ -54,7 +54,7 @@ public class StudentWorkerFuncs {
 	 * method takes in selected uncompleted badge id and call the command to execute to change the badge status in database
 	 */
 	public void ApplyBadge(int badgeId) {
-		BadgeCommand command = new ApplyBadgeCommand(badgeId, this);
+		BadgeCommand command = new ApplyForBadgeCommand(badgeId, this);
 		command.execute();
 		commandStack.push(command);
 	}
@@ -84,7 +84,7 @@ public class StudentWorkerFuncs {
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
-			String createNewBadge = "INSERT INTO Badge (CreatorUserID, BadgeName, BadgeDescription) VALUES (creatorUserId, '"+BadgeName+"','" + BadgeDescription +"')";
+			String createNewBadge = "INSERT INTO Badge (CreatorUserID, BadgeName, BadgeDescription, BadgeStatus) VALUES (creatorUserId, '"+BadgeName+"','" + BadgeDescription +"', 'Waiting')";
 			String getNewBadgeId = "SELECT LAST_INSERT_ID()";
 			stmt.execute(createNewBadge);
 			ResultSet rs = stmt.executeQuery(getNewBadgeId);
