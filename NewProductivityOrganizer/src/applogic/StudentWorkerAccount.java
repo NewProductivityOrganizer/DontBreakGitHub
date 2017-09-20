@@ -54,6 +54,9 @@ public class StudentWorkerAccount implements Account{
 		return password;
 	}
 	
+	/**
+	 * allows account to get deleted if needed for whatever reason
+	 */
 	public void deleteAccount() {
 		
 	}

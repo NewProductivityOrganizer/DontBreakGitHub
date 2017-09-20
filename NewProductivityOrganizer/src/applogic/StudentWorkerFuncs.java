@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Class defines functionality for student workers
+ */
 public class StudentWorkerFuncs {
 	private static final String PORT_NUMBER = "8889";
 	private int userId;

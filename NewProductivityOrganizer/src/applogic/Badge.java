@@ -1,8 +1,7 @@
 package applogic;
 /**
  * this class is of the Badge object with attributes, name and value
- * @param name is the name of the badge and @param value is the value of the badge
- * */
+ */
 public class Badge {
 	
 	private String badgeName;
@@ -14,6 +13,11 @@ public class Badge {
 	private int applicantApproverUserId;
 	private int badgeId;
 
+	/**
+	 * constructor
+	 * @param badgeName
+	 * @param badgeDescription
+	 */
 	public Badge(String badgeName, String badgeDescription) {
 		this.badgeName = badgeName;
 		this.badgeDescription = badgeDescription;

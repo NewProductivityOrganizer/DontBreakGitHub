@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sun.prism.Graphics;
+
 import applogic.ProductivityIncentivizer;
 
 import javax.swing.JTextField;
@@ -70,7 +72,6 @@ public class GraphicalUserInterface extends JFrame  {
 	
 	private ProductivityIncentivizer mainClass = new ProductivityIncentivizer();
 	
-
 	/**
 	 * Launch the application.
 	 */
@@ -113,6 +114,7 @@ public class GraphicalUserInterface extends JFrame  {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+	    
 		JLabel lblNewLabel = new JLabel("                               WELCOME");
 		lblNewLabel.setBounds(6, 70, 338, 38);
 		lblNewLabel.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 15));
@@ -327,6 +329,8 @@ public void logInStudent() {
 	
 	setTitle("Welcome Back!");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	
 	setBounds(200, 200,900, 600);
 	studentLoginPane = new JPanel();
 	studentLoginPane.setBackground(new Color(205, 133, 63));

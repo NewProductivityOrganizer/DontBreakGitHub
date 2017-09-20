@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 /**
- * 
+ * Class defines functionality for supervisors
  */
 public class SupervisorFuncs {
 	private static final String PORT_NUMBER = "8889";

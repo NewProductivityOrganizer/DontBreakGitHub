@@ -1,5 +1,9 @@
 package applogic;
 
+/**
+ * login operation uses login Strategy interface in order to allow user to log in!
+ *
+ */
 public class LogInOperation {
 	private LogInStrategy logInStrategy;
 	private int userId;

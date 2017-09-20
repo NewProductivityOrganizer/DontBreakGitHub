@@ -18,7 +18,6 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 	 */
 	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
 		studentWorkerOperation.UndoAppliedBadge(badgeId);	
 	}
 
@@ -27,7 +26,6 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
 		studentWorkerOperation.ApplyBadge(badgeId);
 	}
 

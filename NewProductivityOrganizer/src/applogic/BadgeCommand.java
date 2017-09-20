@@ -9,7 +9,4 @@ public interface BadgeCommand {
 
 	public void execute();
 
-	//void executeCommand(Badge badge);
-
-
 }

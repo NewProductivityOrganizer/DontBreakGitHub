@@ -1,4 +1,9 @@
 package applogic;
+
+/**
+ * instances of studentWorker class contain the following important attributes:
+ * userID, actualName, point to student worker
+ */
 public class StudentWorker {
 	private int userID;
 	private String actualName;
