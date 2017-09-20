@@ -105,8 +105,7 @@ public class GraphicalUserInterface  extends JFrame {
 	 * Create the Welcome frame.
 	 */
 	public GraphicalUserInterface() {
-		
-
+	
 		
 	}
 	

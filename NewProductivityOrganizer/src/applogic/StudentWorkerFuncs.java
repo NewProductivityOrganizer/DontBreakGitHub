@@ -51,7 +51,7 @@ public class StudentWorkerFuncs {
 		command.undo();
 	}
 	/**
-	 * method takes in selected uncompleted badge id and call the command to execute to change the badge status in database
+	 * method takes in selected incomplete badge id and call the command to execute to change the badge status in database
 	 */
 	public void ApplyBadge(int badgeId) {
 		BadgeCommand command = new ApplyBadgeCommand(badgeId, this);
@@ -129,9 +129,9 @@ public class StudentWorkerFuncs {
 	/**
 	 * Display uncompleted badge
 	 */
-	public void DisplayUncompletedBadge() {
-			String getUncompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'Uncompleted'";
-			List<Badge> badgeList = getAndPrintBadgeInfo(getUncompletedBadge);
+	public void DisplayIncompleteBadge() {
+			String getIncompleteBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'Uncompleted'";
+			List<Badge> badgeList = getAndPrintBadgeInfo(getIncompleteBadge);
 			printBadge(badgeList);
 	}
 	

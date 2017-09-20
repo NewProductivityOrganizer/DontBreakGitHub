@@ -112,7 +112,7 @@ private ProductivityIncentivizer mainClass = new ProductivityIncentivizer();
 			     
 			      String passwordInString = new String(password);
 			      
-			      mainClass.LogIn(userName, passwordInString);
+			     mainClass.LogIn(userName,passwordInString);
 			     
 			      
 			} 
