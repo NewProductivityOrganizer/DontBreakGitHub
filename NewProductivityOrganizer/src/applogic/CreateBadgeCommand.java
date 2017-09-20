@@ -10,14 +10,12 @@ import java.sql.Statement;
  * Command used when student worker wants to create a badge
  */
 public class CreateBadgeCommand implements BadgeCommand{
-	private int creatorUserId;
 	private String badgeName;
 	private String badgeDescription;
 	private int badgeId;
 	private StudentWorkerFuncs studentWorkerOperation;
 	
-	public CreateBadgeCommand(int creatorUserId, String badgeName, String badgeDescription, StudentWorkerFuncs studentWorkerOperation) {
-		this.creatorUserId = creatorUserId;
+	public CreateBadgeCommand(String badgeName, String badgeDescription, StudentWorkerFuncs studentWorkerOperation) {
 		this.badgeDescription = badgeDescription;
 		this.badgeName = badgeName;
 		this.studentWorkerOperation = studentWorkerOperation;
@@ -28,7 +26,7 @@ public class CreateBadgeCommand implements BadgeCommand{
 	 * added badge status is 'Waiting' -- meaning it has not yet been approved by the supervisor
 	 */
 	public void execute() {
-		this.badgeId = studentWorkerOperation.AddNewBadge(this.creatorUserId, this.badgeName, this.badgeDescription);
+		this.badgeId = studentWorkerOperation.AddNewBadge(this.badgeName, this.badgeDescription);
 	}
 	
 	/**
