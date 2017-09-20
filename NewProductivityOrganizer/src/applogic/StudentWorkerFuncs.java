@@ -41,8 +41,8 @@ public class StudentWorkerFuncs {
 	 * @param BadgeName
 	 * @param BadgeDescription
 	 */
-	public void CreateNewBadge(int creatorUserId, String BadgeName, String BadgeDescription) {
-		BadgeCommand command = new CreateBadgeCommand(creatorUserId, BadgeName, BadgeDescription, this);
+	public void CreateNewBadge(String BadgeName, String BadgeDescription) {
+		BadgeCommand command = new CreateBadgeCommand(BadgeName, BadgeDescription, this);
 		command.execute();
 		commandStack.push(command);
 	}
@@ -77,7 +77,7 @@ public class StudentWorkerFuncs {
 	 * @param BadgeDescription
 	 * @return BadgeID
 	 */
-	public int AddNewBadge(int creatorUserId, String BadgeName, String BadgeDescription) {
+	public int AddNewBadge(String BadgeName, String BadgeDescription) {
 		int badgeId = 0;
 		try (
 				// Step 1: Allocate a database "Connection" object
@@ -87,7 +87,7 @@ public class StudentWorkerFuncs {
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
-			String createNewBadge = "INSERT INTO Badge (CreatorUserID, BadgeName, BadgeDescription, BadgeStatus) VALUES (creatorUserId, '"+BadgeName+"','" + BadgeDescription +"', 'Waiting')";
+			String createNewBadge = "INSERT INTO Badge (CreatorUserID, BadgeName, BadgeDescription, BadgeStatus) VALUES ("+userId+", '"+BadgeName+"','" + BadgeDescription +"', 'Waiting')";
 			String getNewBadgeId = "SELECT LAST_INSERT_ID()";
 			stmt.execute(createNewBadge);
 			ResultSet rs = stmt.executeQuery(getNewBadgeId);
@@ -248,7 +248,9 @@ public class StudentWorkerFuncs {
 	public static void main(String [] args) {
 		StudentWorkerFuncs studentWorker1 = new StudentWorkerFuncs(1);
 		studentWorker1.checkMyPerformance();
-		studentWorker1.DisplayMyBadge();
-		studentWorker1.DisplayUncompletedBadge();
+		//studentWorker1.DisplayMyBadge();
+		//studentWorker1.DisplayUncompletedBadge();
+		studentWorker1.CreateNewBadge("BadgeNew1", "TestAdd1");
+		studentWorker1.UndoApplication();
 	}
 }

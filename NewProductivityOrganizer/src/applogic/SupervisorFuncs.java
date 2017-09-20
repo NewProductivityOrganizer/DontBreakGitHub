@@ -159,10 +159,17 @@ public class SupervisorFuncs {
 	 * @return badge selected
 	 */	
 	public Badge DisplayNewBadgeInProcess() {
-		HashMap<Integer, Badge> badgeDictionary = getBadgeDictionary();
-		int badgeIndex = badgeDictionary.size();
-		int selection = getBadgeChoice(badgeIndex);
-		return badgeDictionary.get(selection);
+		HashMap<Integer, Badge> badgeDictionary = getBadgeDictionary("Waiting");
+		if (!badgeDictionary.isEmpty()) {
+			int badgeIndex = badgeDictionary.size();
+			int selection = getBadgeChoice(badgeIndex);
+			return badgeDictionary.get(selection);
+		}
+		else {
+			Badge faultBadge = new Badge ("0","0");
+			return faultBadge;
+		}
+		
 	}
 	
 	/**
@@ -170,7 +177,7 @@ public class SupervisorFuncs {
 	 *  in the database and put them in a dictionary
 	 * @return dictionary of unapproved new badges
 	 */
-	public HashMap<Integer, Badge> getBadgeDictionary(){
+	public HashMap<Integer, Badge> getBadgeDictionary(String badgeStatus){
 		HashMap<Integer, Badge> badgeDictionary = new HashMap<Integer, Badge>();
 		int badgeIndex = 0;
 		try (
@@ -181,13 +188,13 @@ public class SupervisorFuncs {
 				// Step 2: Allocate a "Statement" object in the Connection
 				Statement stmt = conn.createStatement();
 				) {
-			String getNewBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'Waiting'";
-			ResultSet newBadgeInProcess = stmt.executeQuery(getNewBadgeInProcess);
-			while (newBadgeInProcess.next()){
+			String getBadges = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = '" + badgeStatus +"'" ;
+			ResultSet badges = stmt.executeQuery(getBadges);
+			while (badges.next()){
 				badgeIndex += 1;
-				int badgeID = newBadgeInProcess.getInt(1);
-				String badgeName = newBadgeInProcess.getString(2);
-				String badgeDescription = newBadgeInProcess.getString(3);
+				int badgeID = badges.getInt(1);
+				String badgeName = badges.getString(2);
+				String badgeDescription =badges.getString(3);
 				Badge badge = new Badge(badgeName, badgeDescription);
 				badge.setBadgeId(badgeID);
 				System.out.println( "\n" + badgeIndex +". Badge ID: " + badgeID + "    Badge Name: " + badgeName + "\nBadge Description: " + badgeDescription);
@@ -241,8 +248,13 @@ public class SupervisorFuncs {
 	 */
 	public void ApproveNewBadge() {
 		Badge badge = DisplayNewBadgeInProcess();
-		String approveNewBadge = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = " + badge.getBadgeId();
-		editDatabase(approveNewBadge);
+		if (!(badge.getBadgeName()=="0")) {
+			String approveNewBadge = "UPDATE Badge SET BadgeStatus = 'Uncompleted' WHERE BadgeID = " + badge.getBadgeId();
+			editDatabase(approveNewBadge);
+		}
+		else {
+			System.out.println("No New Badge Waiting for approve");
+		}
 	}
 	
 	/**
@@ -253,7 +265,24 @@ public class SupervisorFuncs {
 	 * @param badge
 	 * @return boolean
 	 */
-	public boolean approveBadgeApplication(){
+	public Badge DisplayBadgeInProcess() {
+		HashMap<Integer, Badge> badgeDictionary = getBadgeDictionary("InProgress");
+		int badgeIndex = badgeDictionary.size();
+		int selection = getBadgeChoice(badgeIndex);
+		return badgeDictionary.get(selection);
+	}
+	
+	public void ApproveBadgeApplication() {
+		Badge badge = DisplayBadgeInProcess();
+		if (!(badge.getBadgeName() == "0")) {
+			String approveNewBadge = "UPDATE Badge SET BadgeStatus = 'Completed' WHERE BadgeID = " + badge.getBadgeId();
+			editDatabase(approveNewBadge);
+		}
+		else {
+			System.out.println("No New Badge Waiting for approve");
+		}
+	}
+	/*public boolean approveBadgeApplication(){
 		Scanner sc = new Scanner(System.in);
 		String user_input = sc.nextLine();
 		Badge badge = DisplayNewBadgeInProcess();
@@ -271,6 +300,12 @@ public class SupervisorFuncs {
 		System.out.println("Invalid input.");
 		return false;
 		
+	}*/
+	
+	public static void main (String[]args) {
+		SupervisorFuncs test = new SupervisorFuncs(2);
+		test.ApproveNewBadge();
+		test.ApproveBadgeApplication();
 	}
 
 		

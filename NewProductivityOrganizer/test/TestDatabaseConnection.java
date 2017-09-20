@@ -15,7 +15,7 @@ public class TestDatabaseConnection {
 	@Test
 	public void TestGetBadgeDictionary() {
 		SupervisorFuncs test = new SupervisorFuncs(2);
-		HashMap<Integer,Badge> badgeDictionary = test.getBadgeDictionary();
+		HashMap<Integer,Badge> badgeDictionary = test.getBadgeDictionary("Completed");
 		assertTrue(!badgeDictionary.isEmpty());
 	}
 	
