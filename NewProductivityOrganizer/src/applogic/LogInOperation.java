@@ -21,7 +21,7 @@ public class LogInOperation {
 	 * Call the interface after user logged in
 	 * @param userId
 	 */
-	public void CallInterfaceAfterLoggedIn(int userId) {
-		logInStrategy.CallInterfaceAfterLoggedIn(userId);
+	public String CallInterfaceAfterLoggedIn() {
+		return logInStrategy.CallInterfaceAfterLoggedIn(userId);
 	}
 }

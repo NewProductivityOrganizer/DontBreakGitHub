@@ -58,7 +58,8 @@ public class ProductivityIncentivizer {
 	* @return int userID
 	*/
 	
-	public boolean LogIn(String enteredUserName, String enteredPassword){
+	public String LogIn(String enteredUserName, String enteredPassword){
+		String result = "Fail";
 		try (
 				// Step 1: Allocate a database "Connection" object
 				Connection conn = DriverManager.getConnection(
@@ -75,30 +76,31 @@ public class ProductivityIncentivizer {
 			    if (rs.next()){
 			    		int userId = rs.getInt(1);
 			    		String userIdentity = rs.getString(2);
-			    		LogInHelper(userIdentity, userId);
-			    		return true;
+			    		result = LogInHelper(userIdentity, userId);
 			    } 
 			    else{
 			    		System.out.println("Wrong username or password");
-			    		return false;
+			    		result = "Fail";
 			    }
 		} catch (SQLException e) {
 			e.printStackTrace();
 	 }
-		return false;
+		return result;
    }
 	
-	public void LogInHelper(String userIdentity, int userId) {
+	public String LogInHelper(String userIdentity, int userId) {
+		String result = "";
 		switch(userIdentity) {
 		case "StudentWorker":
 			LogInOperation studentWorkerLogInOperation = new LogInOperation(new StudentWorkerLogIn(), userId );
-			studentWorkerLogInOperation.CallInterfaceAfterLoggedIn(userId);
+			result = studentWorkerLogInOperation.CallInterfaceAfterLoggedIn();
 			break;
 		case "Supervisor":
 			LogInOperation supervisorLogInOperation = new LogInOperation(new SupervisorLogIn(), userId );
-			supervisorLogInOperation.CallInterfaceAfterLoggedIn(userId);
+			result = supervisorLogInOperation.CallInterfaceAfterLoggedIn();
 			break;
 		}
+		return result;
 	}
 
 	

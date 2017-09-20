@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 /**
  *
  * Class for Login screen*/
-public class LoginScreen extends JPanel implements ActionListener{
+public class StudengWorkerLoginScreen extends JPanel implements ActionListener{
  private JButton displayLeadingBoard;
  private JButton  displayMyBadge;
  private JButton  displayIncompleteBadges;
@@ -24,7 +24,7 @@ public class LoginScreen extends JPanel implements ActionListener{
 /**
 * Create the panel.
 */
-	public LoginScreen () {
+	public StudengWorkerLoginScreen () {
 
 		 add(display);
 

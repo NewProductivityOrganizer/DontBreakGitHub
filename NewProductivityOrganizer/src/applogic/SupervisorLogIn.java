@@ -6,8 +6,8 @@ package applogic;
 public class SupervisorLogIn implements LogInStrategy {
 
 	@Override
-	public void CallInterfaceAfterLoggedIn(int userId) {
-		System.out.println("Supervisor  " + userId);
+	public String CallInterfaceAfterLoggedIn(int userId) {
+		return "Supervisor";
 	}
 
 }

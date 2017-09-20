@@ -11,21 +11,27 @@ import applogic.ProductivityIncentivizer;
 public class LogInTest {
 
 	@Test
-	public void LogInSuccessTest() {
+	public void LogInStudentWorkerTest() {
 		ProductivityIncentivizer test = new ProductivityIncentivizer();
-		assertTrue(test.LogIn("SW1", "12345abc"));
+		assertEquals("StudentWorker",test.LogIn("SW1", "12345abc"));
 	}
 	
 	@Test
 	public void LogInWrongPasswordTest() {
 		ProductivityIncentivizer test = new ProductivityIncentivizer();
-		assertFalse(test.LogIn("SW1", "12345bc"));
+		assertEquals("Fail",test.LogIn("SW1", "12345bc"));
 	}
 	
 	@Test
 	public void LogInWrongUserNameTest() {
 		ProductivityIncentivizer test = new ProductivityIncentivizer();
-		assertFalse(test.LogIn("SW3", "12345abc"));
+		assertEquals("Fail",test.LogIn("SW3", "12345abc"));
+	}
+	
+	@Test
+	public void LogInSupervisorTest() {
+		ProductivityIncentivizer test = new ProductivityIncentivizer();
+		assertEquals("Supervisor",test.LogIn("BOSS1", "12345abc"));
 	}
 
 
