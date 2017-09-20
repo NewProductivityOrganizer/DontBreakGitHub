@@ -17,11 +17,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPasswordField;
 import java.awt.Color;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
@@ -94,13 +99,14 @@ public class GraphicalUserInterface extends JFrame  {
 	/**
 	 * Create the Welcome frame.
 	 * i.e the first thing the User sees when they start running the system
+	 * @throws IOException 
 	 */
 	public void welcomeFrame(boolean isValid) {
 		
 		setTitle("Productivity Incentivizer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200,350, 400);
-		contentPane = new JPanel();
+		setBounds(200, 200, 350, 400);
+		contentPane = new JPanel();		
 		contentPane.setBackground(new Color(205, 133, 63));
 		contentPane.setForeground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
