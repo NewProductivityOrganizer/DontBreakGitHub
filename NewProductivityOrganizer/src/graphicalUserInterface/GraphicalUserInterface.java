@@ -3,6 +3,7 @@ package graphicalUserInterface;
 import java.awt.BorderLayout;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -33,7 +34,7 @@ import javax.swing.JRadioButton;
  * then that option, based on the type of account chosen will display the appropriate interface
  * @author palesa
  * */
-public class GraphicalUserInterface extends JFrame  {
+public class GraphicalUserInterface  extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel accountPane;//panel for create account
@@ -62,7 +63,7 @@ public class GraphicalUserInterface extends JFrame  {
 	private JButton btnNewButton;
 	private char [] password;
 	
-	private ProductivityIncentivizer mainClass = new ProductivityIncentivizer();
+	
 	
 
 	/**
@@ -72,9 +73,27 @@ public class GraphicalUserInterface extends JFrame  {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GraphicalUserInterface frame = new GraphicalUserInterface();
-					frame.logInStudent();
+					
+					JFrame frame = new JFrame("Productivity Incentivizer");
+					
+					/**
+					 * Panel for Login Interface*/
+				//	LoginScreen loginScreenPanel  = new LoginScreen();
+					
+					//frame.getContentPane().add(loginScreenPanel);
+					
+					WelcomeScreen welcomeScreen = new WelcomeScreen();
+					
+					frame.getContentPane().add(welcomeScreen);
+
+					//GraphicalUserInterface frame = new GraphicalUserInterface();
+					
+					
+					//frame.logInStudent();
+					frame.setSize(700,400);
+					//frame.pack();
 					frame.setVisible(true);
+					//frame.setResizable(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -86,126 +105,25 @@ public class GraphicalUserInterface extends JFrame  {
 	 * Create the Welcome frame.
 	 */
 	public GraphicalUserInterface() {
-	
-		welcomeFrame();
+		
 
+		
 	}
 	
-	public void welcomeFrame() {
-		
-		setTitle("Productivity Incentivizer");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200,350, 400);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(205, 133, 63));
-		contentPane.setForeground(Color.BLACK);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("                               WELCOME");
-		lblNewLabel.setBounds(6, 70, 338, 38);
-		lblNewLabel.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 15));
-		contentPane.add(lblNewLabel);
-		
-		username = new JTextField(" ");
-		username.setBounds(140, 148, 135, 32);
-		contentPane.add(username);
-		username.setColumns(10);
-		
 	
-		JLabel lblUSERNAME = new JLabel("USERNAME");
-		lblUSERNAME.setBounds(49, 156, 79, 16);
-		contentPane.add(lblUSERNAME);
-	
-		
-		
-		JLabel lblPASSWORD = new JLabel("PASSWORD:");
-		lblPASSWORD.setBounds(49, 212, 79, 16);
-		contentPane.add(lblPASSWORD);
-	
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(140, 207, 135, 32);
-		passwordField.setEchoChar('*');
-		contentPane.add(passwordField);
-		
-		
-		
-		
-		btnLogin = new JButton("Login");
-		btnLogin.setBounds(162, 261, 96, 22);
-		btnLogin.setVisible(true);
-	
-		contentPane.add(btnLogin);
-		
-		lblPrompt = new JLabel("Don't have an account?");
-		lblPrompt.setBounds(20, 315, 181, 16);
-		contentPane.add(lblPrompt);
-	
-		
-		btnCreateAccount = new JButton("Create Account>>");
-		btnCreateAccount.setBounds(6, 343, 160, 29);
-		contentPane.add(btnCreateAccount);
-		btnCreateAccount.setVisible(true);
-	
-	
-		
-		/**
-		 * ActionListener for the create account button
-		 * Proceed to creating account interface
-		 * */
-		
-		btnCreateAccount.addActionListener(new ActionListener()
-		{
-			
-			public void actionPerformed(ActionEvent event)
-			{
-			   btnLogin.setVisible(false);
-			   createAccount();
-			
-	        }
-		}); 
-		
-		/**
-		 * actionListener for Login button
-		 * should lead to interface for login
-		 * Read in user name and password input
-		 * */
-	btnLogin.addActionListener(new ActionListener()
-		{
-			
-			public void actionPerformed(ActionEvent event)
-			{
-				 
-				if(event.getSource() == btnLogin) {   
-			      String userName = username.getText();
-			      password = passwordField.getPassword();//password input
-			     
-			      String passwordInString = new String(password);
-			      
-			      mainClass.LogIn(userName, passwordInString);
-			      //logInStudent();
-			      
-			} 
-	        }
-		}); 
-		
-		
-	}
-
 	/**
 	 * Create frame for create account 
 	 * with options to choose to create a student worker account or a supervisor account
 	 * */
 	
-	public void createAccount() {
+	/*public void createAccount() {
 		setTitle("Productivity Incentivizer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200,350, 400);
 		accountPane = new JPanel();
 		accountPane.setBackground(new Color(205, 133, 63));
 		accountPane.setForeground(Color.BLACK);
+		
 		accountPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(accountPane);
 		accountPane.setLayout(null);
@@ -245,7 +163,7 @@ public class GraphicalUserInterface extends JFrame  {
 		 * * */
 	
 		
-		supervisorButton.addActionListener(new ActionListener()
+		/*supervisorButton.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent event)
@@ -271,7 +189,7 @@ public class GraphicalUserInterface extends JFrame  {
 				  studentworkerAccount();//method to take to create account window
 			  }
 	        }
-		});
+		}); */
 		
 		
 		
@@ -281,7 +199,7 @@ public class GraphicalUserInterface extends JFrame  {
 		 * Move back to previous interface
 		 * */
 		
-		btnBack = new JButton("<<Back");
+	/*	btnBack = new JButton("<<Back");
 		btnBack.setBounds(207,343,117,29);
 		accountPane.add(btnBack);
 		btnBack.setVisible(true);
@@ -294,16 +212,16 @@ public class GraphicalUserInterface extends JFrame  {
 			public void actionPerformed(ActionEvent event)
 			{
 				
-				welcomeFrame() ;//supposed to go back to the welcome frame
+			//	welcomeFrame() ;//supposed to go back to the welcome frame
 		
 	        }
-		});
+		});*/
 		
 
 		
-	}
 	
-public void logInStudent() {
+	
+/*public void logInStudent() {
 	
 	setTitle("Welcome Back!");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -373,11 +291,12 @@ public void logInStudent() {
 	    undoMyPreviousAction.setVisible(true);
 	
 	
-}
+}/*
 	/**
 	 * Create interface for supervisor Account
 	 * */
-	public void supervisorAccount() {
+	
+	/*public void supervisorAccount() {
 		setTitle("Create supervisor Account");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200,200,400, 450);
@@ -449,7 +368,7 @@ public void logInStudent() {
 		
 		/**
 		 * Action Listener for the back button*/
-		btnBack.addActionListener(new ActionListener()
+	/*	btnBack.addActionListener(new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent event)
@@ -464,11 +383,11 @@ public void logInStudent() {
 		
 	
 		
-	}
+	}*/
 	/**
 	 * Create frame for student worker account
 	 * */
-	public void studentworkerAccount() {
+/*	public void studentworkerAccount() {
 		setTitle("Create Student Worker Account");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200,350, 400);
@@ -548,7 +467,7 @@ public void logInStudent() {
 	        }
 		});
 	
-	}
+	}*/
 
 	
 	
