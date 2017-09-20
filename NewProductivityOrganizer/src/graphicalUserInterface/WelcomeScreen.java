@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -27,18 +28,9 @@ private JButton btnCreateAccount;
 private char[] password;
 private JPanel accountPane;
 private ProductivityIncentivizer mainClass = new ProductivityIncentivizer();
-private boolean loginResult;
 private JLabel printout;
 
-public WelcomeScreen(boolean loginResult) {
-
-	if (!loginResult) {
-		printout = new JLabel();
-		printout.setBounds(500, 500, 80, 80);
-		printout.setText("Wrong UserName or Password!");
-		printout.setVisible(true);
-		add(printout);
-	}
+public WelcomeScreen() {
 	JLabel lblUSERNAME = new JLabel("USERNAME");
 	lblUSERNAME.setBounds(20, 315, 181, 16);
 	add(lblUSERNAME);
@@ -64,7 +56,6 @@ public WelcomeScreen(boolean loginResult) {
     btnCreateAccount.setBounds(6, 343, 160, 29);
     add(btnCreateAccount);
     btnCreateAccount.setVisible(true);
-    this.loginResult = loginResult;
 /**
 * ActionListener for the create account button
 * Proceed to creating account interface
@@ -121,7 +112,8 @@ btnLogin.addActionListener(new ActionListener()
 				frame.setSize(700, 400);
 			}
 			else {
-				WelcomeScreen back = new WelcomeScreen(false);
+				JOptionPane.showMessageDialog(null, "Wrong UserName or Password!");
+				WelcomeScreen back = new WelcomeScreen();
 				frame.getContentPane().add(back);
 				frame.setSize(700,400);
 			}

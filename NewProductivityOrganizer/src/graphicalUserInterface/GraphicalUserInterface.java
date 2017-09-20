@@ -84,7 +84,7 @@ StudengWorkerLoginScreen loginScreenPanel  = new StudengWorkerLoginScreen();
 
 frame.getContentPane().add(loginScreenPanel);
 
-WelcomeScreen welcomeScreen = new WelcomeScreen(true);
+WelcomeScreen welcomeScreen = new WelcomeScreen();
 
 //LoginScreen student = new LoginScreen();
 
