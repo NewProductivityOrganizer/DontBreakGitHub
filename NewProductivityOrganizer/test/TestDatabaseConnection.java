@@ -10,6 +10,9 @@ import applogic.ProductivityIncentivizer;
 import applogic.StudentWorkerFuncs;
 import applogic.SupervisorFuncs;
 
+/**
+ * Tests that needed functionality from the database works
+ */
 public class TestDatabaseConnection {
 
 	@Test
@@ -40,5 +43,4 @@ public class TestDatabaseConnection {
 		List<Badge> badgeList = test.getBadgeInfo(statement);
 		assertTrue(!badgeList.isEmpty());
 	}
-
 }

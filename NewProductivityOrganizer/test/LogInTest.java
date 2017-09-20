@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import applogic.ProductivityIncentivizer;
 
+/**
+ * tests login information against an artificially created user with
+ * login info: "SW1" , "12345abc" (very bad password!)
+ */
 public class LogInTest {
 
 	@Test
