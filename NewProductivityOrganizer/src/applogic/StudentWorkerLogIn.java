@@ -7,8 +7,8 @@ package applogic;
 public class StudentWorkerLogIn implements LogInStrategy {
 
 	@Override
-	public void CallInterfaceAfterLoggedIn(int userId) {
-		System.out.println("StudentWorker" + userId);
+	public String CallInterfaceAfterLoggedIn(int userId) {
+		return "StudentWorker";
 	}
 
 }

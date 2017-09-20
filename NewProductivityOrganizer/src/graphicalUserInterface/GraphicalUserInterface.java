@@ -80,11 +80,11 @@ try {
 
 
 
-LoginScreen loginScreenPanel  = new LoginScreen();
+StudengWorkerLoginScreen loginScreenPanel  = new StudengWorkerLoginScreen();
 
 frame.getContentPane().add(loginScreenPanel);
 
-WelcomeScreen welcomeScreen = new WelcomeScreen();
+WelcomeScreen welcomeScreen = new WelcomeScreen(true);
 
 //LoginScreen student = new LoginScreen();
 
