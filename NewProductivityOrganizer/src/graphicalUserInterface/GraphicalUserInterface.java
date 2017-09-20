@@ -118,7 +118,7 @@ public class GraphicalUserInterface extends JFrame  {
 		username.setColumns(10);
 		
 		if (!isValid) {
-			lblPrompt = new JLabel("Wrong User Name or Passord");
+			lblPrompt = new JLabel("Wrong User Name or Password");
 			lblPrompt.setBounds(49, 110, 200, 16);
 			contentPane.add(lblPrompt);
 		}
