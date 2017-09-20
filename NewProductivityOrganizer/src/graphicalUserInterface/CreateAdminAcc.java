@@ -16,14 +16,14 @@ public class CreateAdminAcc extends JPanel implements ActionListener{
 
 	public CreateAdminAcc() {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-	    setLayout(null);
+		setLayout(null);
 
-	    JRadioButton supervisorButton= new JRadioButton("Supervisor");
+		JRadioButton supervisorButton= new JRadioButton("Supervisor");
 		supervisorButton.setBounds(140, 148, 135, 32);
-	    add(supervisorButton);
+		add(supervisorButton);
 
 
-	    JRadioButton studentWorkerButton= new JRadioButton("Student Worker");
+		JRadioButton studentWorkerButton= new JRadioButton("Student Worker");
 		studentWorkerButton.setBounds(140, 207, 135, 32);
 		add(studentWorkerButton);
 
@@ -41,15 +41,15 @@ public class CreateAdminAcc extends JPanel implements ActionListener{
 		add(btnNext);
 
 		/**
-		* Action Listener for proceed button
-		* to proceed to the  next interface(i.e the supervisor account creation interface
-		* * */
+		 * Action Listener for proceed button
+		 * to proceed to the  next interface(i.e the supervisor account creation interface
+		 * * */
 		supervisorButton.addActionListener(new ActionListener()
 		{
-		public void actionPerformed(ActionEvent event)
-		{
-		if(event.getSource() == supervisorButton) {
-		/*
+			public void actionPerformed(ActionEvent event)
+			{
+				if(event.getSource() == supervisorButton) {
+					/*
 			JFrame frame = new JFrame("Productivity Incentivizer");
 
 			CreateAccSupervisor supervisor = new CreateAccSupervisor ();
@@ -63,36 +63,36 @@ public class CreateAdminAcc extends JPanel implements ActionListener{
 
 			 guiFrame.disposeframe();*/
 
-		  }
-		        }
+				}
+			}
 		});
 		studentWorkerButton.addActionListener(new ActionListener()
 		{
-		public void actionPerformed(ActionEvent event)
-		{
-		if(event.getSource() == studentWorkerButton) {
+			public void actionPerformed(ActionEvent event)
+			{
+				if(event.getSource() == studentWorkerButton) {
 
 
 
-		  }
-		        }
+				}
+			}
 		});
 		/**
-		* Action Listener for back button
-		* Move back to previous interface
-		* */
+		 * Action Listener for back button
+		 * Move back to previous interface
+		 * */
 		JButton btnBack = new JButton("<<Back");
 		btnBack.setBounds(207,343,117,29);
-	    add(btnBack);
+		add(btnBack);
 		btnBack.setVisible(true);
 
 		btnBack.addActionListener(new ActionListener()
 		{
-		public void actionPerformed(ActionEvent event)
-		{
-		//
-		//welcomeFrame() ;//supposed to go back to the welcome frame
-		        }
+			public void actionPerformed(ActionEvent event)
+			{
+				//
+				//welcomeFrame() ;//supposed to go back to the welcome frame
+			}
 		});
 
 

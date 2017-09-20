@@ -36,89 +36,89 @@ import javax.swing.JRadioButton;
  * */
 public class GraphicalUserInterface extends JFrame {
 
-private JPanel contentPane;
-private JPanel accountPane;//panel for create account
-private JPanel supervisorAccountPane;//pane for individual accounts
-private JPanel studentworkerAccountPane;
-private JPanel studentLoginPane;
-private JTextField username;
-private JTextField name;
-private JPasswordField passwordField;
-private JPasswordField passwordField2;
-private JButton btnLogin;
-private JLabel lblPrompt;
-private JButton btnCreateAccount;
-private JButton btnNext;
-private JButton btnBack;
-private JButton displayLeadingBoard;
-private JButton displayMyBadge;
-private JButton displayIncompleteBadges;
-private JButton displayMyPerformance;
-private JRadioButton supervisorButton;
-private JButton displayMyBadgeInProgress;
-private JButton createNewBadge;
-private JButton applyForBadge;
-private JButton undoMyPreviousAction;
-private JRadioButton studentWorkerButton;
-private JButton btnNewButton;
-private char [] password;
-private static WelcomeScreen welcomeScreen;
-static JFrame frame;
+	private JPanel contentPane;
+	private JPanel accountPane;//panel for create account
+	private JPanel supervisorAccountPane;//pane for individual accounts
+	private JPanel studentworkerAccountPane;
+	private JPanel studentLoginPane;
+	private JTextField username;
+	private JTextField name;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField2;
+	private JButton btnLogin;
+	private JLabel lblPrompt;
+	private JButton btnCreateAccount;
+	private JButton btnNext;
+	private JButton btnBack;
+	private JButton displayLeadingBoard;
+	private JButton displayMyBadge;
+	private JButton displayIncompleteBadges;
+	private JButton displayMyPerformance;
+	private JRadioButton supervisorButton;
+	private JButton displayMyBadgeInProgress;
+	private JButton createNewBadge;
+	private JButton applyForBadge;
+	private JButton undoMyPreviousAction;
+	private JRadioButton studentWorkerButton;
+	private JButton btnNewButton;
+	private char [] password;
+	private static WelcomeScreen welcomeScreen;
+	static JFrame frame;
 
-/**
-* Launch the application.
-*/
-public static void main(String[] args) {
-EventQueue.invokeLater(new Runnable() {
-public void run() {
-try {
- frame = new JFrame("Productivity Incentivizer");
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new JFrame("Productivity Incentivizer");
 
-//welcomeScreen = new WelcomeScreen();
+					//welcomeScreen = new WelcomeScreen();
 
-//welcomeScreen.frameVisibility(frame);
+					//welcomeScreen.frameVisibility(frame);
 
 
 
-StudengWorkerLoginScreen loginScreenPanel  = new StudengWorkerLoginScreen();
+					StudengWorkerLoginScreen loginScreenPanel  = new StudengWorkerLoginScreen();
 
-frame.getContentPane().add(loginScreenPanel);
+					frame.getContentPane().add(loginScreenPanel);
 
-WelcomeScreen welcomeScreen = new WelcomeScreen();
+					WelcomeScreen welcomeScreen = new WelcomeScreen();
 
-//LoginScreen student = new LoginScreen();
+					//LoginScreen student = new LoginScreen();
 
-frame.getContentPane().add(welcomeScreen);
+					frame.getContentPane().add(welcomeScreen);
 
-//frame.getContentPane().add(student);
-//GraphicalUserInterface frame = new GraphicalUserInterface();
-//frame.logInStudent();
-frame.setSize(700,400);
-//frame.pack();
-frame.setVisible(true);
-//frame.setResizable(true);
+					//frame.getContentPane().add(student);
+					//GraphicalUserInterface frame = new GraphicalUserInterface();
+					//frame.logInStudent();
+					frame.setSize(700,400);
+					//frame.pack();
+					frame.setVisible(true);
+					//frame.setResizable(true);
 
-} catch (Exception e) {
-e.printStackTrace();
-}
-}
-});
-}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-/**
-* Create the Welcome frame.
-*/
-public GraphicalUserInterface() {
-}
+	/**
+	 * Create the Welcome frame.
+	 */
+	public GraphicalUserInterface() {
+	}
 
-public void disposeframe(){
-	GraphicalUserInterface.frame.dispose();
-}
-/**
-* Create frame for create account 
-* with options to choose to create a student worker account or a supervisor account
-* */
-/*public void createAccount() {
+	public void disposeframe(){
+		GraphicalUserInterface.frame.dispose();
+	}
+	/**
+	 * Create frame for create account 
+	 * with options to choose to create a student worker account or a supervisor account
+	 * */
+	/*public void createAccount() {
 setTitle("Productivity Incentivizer");
 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 setBounds(200, 200,350, 400);
@@ -146,10 +146,10 @@ btnNext.setBounds(6, 343, 160, 29);
 accountPane.add(btnNext);
 btnNext.setVisible(false);
 /**
-* Action Listener for proceed button
-* to proceed to the  next interface(i.e the supervisor account creation interface
-* * */
-/*supervisorButton.addActionListener(new ActionListener()
+	 * Action Listener for proceed button
+	 * to proceed to the  next interface(i.e the supervisor account creation interface
+	 * * */
+	/*supervisorButton.addActionListener(new ActionListener()
 {
 public void actionPerformed(ActionEvent event)
 {
@@ -157,7 +157,7 @@ if(event.getSource() == supervisorButton) {
   btnNext.setVisible(true);
   btnBack.setVisible(false);
   supervisorAccount();//method that creates the supervisor account create interface
- 
+
   }
         }
 });
@@ -172,11 +172,11 @@ if(event.getSource() == studentWorkerButton) {
   }
         }
 }); */
-/**
-* Action Listener for back button
-* Move back to previous interface
-* */
-/*  btnBack = new JButton("<<Back");
+	/**
+	 * Action Listener for back button
+	 * Move back to previous interface
+	 * */
+	/*  btnBack = new JButton("<<Back");
 btnBack.setBounds(207,343,117,29);
 accountPane.add(btnBack);
 btnBack.setVisible(true);
@@ -190,7 +190,7 @@ welcomeFrame() ;//supposed to go back to the welcome frame
         }
 });*/
 
-/*public void logInStudent() {
+	/*public void logInStudent() {
 setTitle("Welcome Back!");
 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 setBounds(200, 200,350, 400);
@@ -204,63 +204,63 @@ displayLeadingBoard = new JButton("displayLeadingBoard");
 displayLeadingBoard.setBounds(207,315,117,29);
 studentLoginPane.add( displayLeadingBoard );
 displayLeadingBoard.setVisible(true);
- 
- 
- 
+
+
+
 displayMyBadge = new JButton("displayMyBadge");
 displayMyBadge.setBounds(207,310,117,29);
 studentLoginPane.add( displayMyBadge );
 displayMyBadge.setVisible(true);
- 
- 
-     
+
+
+
 displayIncompleteBadges = new JButton("displayIncompleteBadge");
 displayIncompleteBadges.setBounds(207,320,117,29);
 studentLoginPane.add( displayIncompleteBadges );
 displayIncompleteBadges.setVisible(true);
- 
-     
-     
+
+
+
      displayMyPerformance =  new JButton("displayMyPerformance"); 
      displayMyPerformance.setBounds(207,330,117,29);
 studentLoginPane.add(  displayMyPerformance );
   displayMyPerformance.setVisible(true);
-     
- 
- 
+
+
+
 displayMyBadgeInProgress = new JButton("displayMyBadgeInProgress");
 displayMyBadgeInProgress.setBounds(207,345,117,29);
 studentLoginPane.add( displayMyBadgeInProgress );
 displayMyBadgeInProgress.setVisible(true);
-   
- 
- 
- 
- 
+
+
+
+
+
 createNewBadge =new JButton("createNewBadge");
 createNewBadge.setBounds(207,340,117,29);
 studentLoginPane.add( createNewBadge );
 createNewBadge .setVisible(true);
- 
- 
- 
- 
- 
+
+
+
+
+
     applyForBadge = new JButton("applyForBadge");
     applyForBadge.setBounds(207,345,117,29);
     studentLoginPane.add(applyForBadge );
 applyForBadge .setVisible(true);
- 
- 
+
+
     undoMyPreviousAction = new JButton ("undoMyPreviousAction");
     undoMyPreviousAction.setBounds(207,350,117,29);
     studentLoginPane.add(undoMyPreviousAction );
     undoMyPreviousAction.setVisible(true);
 }/*
 /**
-* Create interface for supervisor Account
-* */
-/*public void supervisorAccount() {
+	 * Create interface for supervisor Account
+	 * */
+	/*public void supervisorAccount() {
 setTitle("Create supervisor Account");
 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 setBounds(200,200,400, 450);
@@ -314,21 +314,21 @@ btnBack.setBounds(207,350,117,29);
 supervisorAccountPane.add(btnBack);
 btnBack.setVisible(true);
 /**
-* Action Listener for the back button*/
-/*  btnBack.addActionListener(new ActionListener()
+	 * Action Listener for the back button*/
+	/*  btnBack.addActionListener(new ActionListener()
 {
 public void actionPerformed(ActionEvent event)
 {
 btnNext.setVisible(false);
 createAccount();
- 
+
         }
 });
 }*/
-/**
-* Create frame for student worker account
-* */
-/* public void studentworkerAccount() {
+	/**
+	 * Create frame for student worker account
+	 * */
+	/* public void studentworkerAccount() {
 setTitle("Create Student Worker Account");
 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 setBounds(200, 200,350, 400);
