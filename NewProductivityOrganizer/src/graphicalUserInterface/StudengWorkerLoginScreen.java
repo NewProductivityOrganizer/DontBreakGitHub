@@ -2,12 +2,18 @@ package graphicalUserInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import applogic.Badge;
+import applogic.ProductivityIncentivizer;
+import applogic.StudentWorker;
+import applogic.StudentWorkerFuncs;
 /**
  *
  * Class for Login screen*/
@@ -21,6 +27,7 @@ public class StudengWorkerLoginScreen extends JPanel implements ActionListener{
  	private JButton applyForBadge;
  	private JButton undoMyPreviousAction;
  	private JTextArea display = new JTextArea(10,40);
+ 	private StudentWorkerFuncs sw1 = new StudentWorkerFuncs(1);
 /**
 * Create the panel.
 */
@@ -33,13 +40,18 @@ public class StudengWorkerLoginScreen extends JPanel implements ActionListener{
 		 displayLeadingBoard.setBounds(207,315,117,29);
 		 add( displayLeadingBoard );
 		 displayLeadingBoard.setVisible(true);
+		 display.setEditable(false);
 
 		 displayLeadingBoard.addActionListener(new ActionListener()
 		 {
 			 public void actionPerformed(ActionEvent event)
 			 {
-
-				 display.setText("leading board");
+				 display.setText("");
+				 ProductivityIncentivizer pi = new ProductivityIncentivizer();
+				 List<StudentWorker> swList = pi.getLeadingBoard();
+				 for (StudentWorker sw : swList) {
+					 display.append(sw.toString());
+				 }
 
 			 }
 		 });
@@ -53,8 +65,14 @@ public class StudengWorkerLoginScreen extends JPanel implements ActionListener{
 		 {
 			 public void actionPerformed(ActionEvent event)
 			 {
-
-				 display.setText("badge list");
+				 display.setText("");
+				List<Badge> myBadge  = sw1.DisplayMyBadge();
+				int badgeIndex = 0;
+				for (Badge badge : myBadge) {
+					badgeIndex++;
+					display.append(badgeIndex + ".");
+					display.append(badge.toString());
+				}
 
 			 }
 		 });
@@ -72,7 +90,14 @@ public class StudengWorkerLoginScreen extends JPanel implements ActionListener{
    //display = new JTextField("");
   // add(display);
    //display.setBounds(207,315,200,300);
-				 display.setText("Badge incomplete");
+				 display.setText("");
+				 List<Badge> myBadge  = sw1.DisplayUncompletedBadge();
+					int badgeIndex = 0;
+					for (Badge badge : myBadge) {
+						badgeIndex++;
+						display.append(badgeIndex + ".");
+						display.append(badge.toString());
+					}
 
 			 }
 		 });
@@ -107,7 +132,13 @@ public class StudengWorkerLoginScreen extends JPanel implements ActionListener{
   // display = new JTextField("");
  //  add(display);
 
-				 display.setText("InProgress");
+				 List<Badge> myBadge  = sw1.DisplayMyBadgeInProcess();
+					int badgeIndex = 0;
+					for (Badge badge : myBadge) {
+						badgeIndex++;
+						display.append(badgeIndex + ".");
+						display.append(badge.toString());
+					}
 
 			 }
 		 });

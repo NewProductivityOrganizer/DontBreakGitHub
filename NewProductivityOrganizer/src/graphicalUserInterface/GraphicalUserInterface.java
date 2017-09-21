@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import applogic.DatabaseBuilder;
 import applogic.ProductivityIncentivizer;
 
 import javax.swing.JTextField;
@@ -109,6 +110,9 @@ public class GraphicalUserInterface extends JFrame {
 	 * Create the Welcome frame.
 	 */
 	public GraphicalUserInterface() {
+		DatabaseBuilder db = new DatabaseBuilder();
+		db.dropDatabase();
+		db.setupDatabase();
 	}
 
 	public void disposeframe(){

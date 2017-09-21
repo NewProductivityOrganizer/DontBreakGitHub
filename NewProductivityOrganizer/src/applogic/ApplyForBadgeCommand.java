@@ -26,7 +26,7 @@ public class ApplyForBadgeCommand implements BadgeCommand {
 	 */
 	@Override
 	public void execute() {
-		studentWorkerOperation.ApplyBadge(badgeId);
+		studentWorkerOperation.ChangeAppliedBadgeStatus(badgeId);
 	}
 
 }

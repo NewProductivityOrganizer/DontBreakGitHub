@@ -30,7 +30,7 @@ public class DatabaseBuilder {
 		}
 	}
 
-	public static void main(String[] args) {
+	public void setupDatabase() {
 		//Build up a new database for ProductivityIncentizer
 		try (
 				// Step 1: Allocate a database "Connection" object
@@ -122,5 +122,24 @@ public class DatabaseBuilder {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void dropDatabase() {
+		//Build up a new database for ProductivityIncentizer
+				try (
+						// Step 1: Allocate a database "Connection" object
+						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/", 
+								"root", "root"); // MySQL
+						// Step 2: Allocate a "Statement" object in the Connection
+						Statement stmt = conn.createStatement();
+						) {
+					// Step 3 - create our database
+					String sql = "drop database ProductivityIncentivizerDatabase";
+					stmt.execute(sql);
+
+
+				} catch(SQLException ex) {
+					ex.printStackTrace();
+				}
 	}
 }

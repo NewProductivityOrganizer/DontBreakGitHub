@@ -133,28 +133,31 @@ public class StudentWorkerFuncs {
 	/**
 	 * Display uncompleted badge
 	 */
-	public void DisplayUncompletedBadge() {
+	public List<Badge> DisplayUncompletedBadge() {
 			String getUncompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE BadgeStatus = 'Uncompleted'";
 			List<Badge> badgeList = getBadgeInfo(getUncompletedBadge);
 			printBadge(badgeList);
+			return badgeList;
 	}
 	
 	/**
 	 * Display Badge completed by this student worker
 	 */
-	public void DisplayMyBadge() {
+	public List<Badge> DisplayMyBadge() {
 		String myCompletedBadge = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + " AND BadgeStatus = 'Completed'";
 		List<Badge> badgeList = getBadgeInfo(myCompletedBadge);
 		printBadge(badgeList);
+		return badgeList;
 	}
 	
 	/**
 	 * Display Badge completed by this student worker
 	 */
-	public void DisplayMyBadgeInProcess() {
-		String myBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + "AND BadgeStatus = 'InProcess'";
+	public List<Badge> DisplayMyBadgeInProcess() {
+		String myBadgeInProcess = "SELECT BadgeID, BadgeName, BadgeDescription FROM Badge WHERE ClaimingUserID = " +this.userId + " AND BadgeStatus = 'InProgress'";
 		List<Badge> badgeList = getBadgeInfo(myBadgeInProcess);
 		printBadge(badgeList);
+		return badgeList;
 	}
 	
 	/**
@@ -246,11 +249,84 @@ public class StudentWorkerFuncs {
 	
 	//Just to test student worker functions in console;
 	public static void main(String [] args) {
+		DatabaseBuilder db = new DatabaseBuilder();
+		db.dropDatabase();
+		db.setupDatabase();
 		StudentWorkerFuncs studentWorker1 = new StudentWorkerFuncs(1);
 		studentWorker1.checkMyPerformance();
 		//studentWorker1.DisplayMyBadge();
 		//studentWorker1.DisplayUncompletedBadge();
 		studentWorker1.CreateNewBadge("BadgeNew1", "TestAdd1");
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			String statement = "SELECT BadgeName,BadgeStatus FROM Badge";
+			ResultSet rs= stmt.executeQuery(statement);
+			System.out.println("After created a new Badge, Badge in database: ");
+			while (rs.next()) {
+				System.out.println(rs.getString(1) + ": " + rs.getString(2));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		studentWorker1.UndoApplication();
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			String statement = "SELECT BadgeName,BadgeStatus FROM Badge";
+			ResultSet rs= stmt.executeQuery(statement);
+			System.out.println("After undo, Badge in database: ");
+			while (rs.next()) {
+				System.out.println(rs.getString(1)+ ": " + rs.getString(2));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		studentWorker1.ApplyBadge(4);
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			String statement = "SELECT BadgeName,BadgeStatus FROM Badge";
+			ResultSet rs= stmt.executeQuery(statement);
+			System.out.println("After apply for Badge with ID of 4, Badge in database: ");
+			while (rs.next()) {
+				System.out.println(rs.getString(1)+ ": " + rs.getString(2));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		studentWorker1.UndoApplication();
+		try (
+				// Step 1: Allocate a database "Connection" object
+				Connection conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:" + PORT_NUMBER + "/ProductivityIncentivizerDatabase?user=root&password=root"); // MySQL
+
+				// Step 2: Allocate a "Statement" object in the Connection
+				Statement stmt = conn.createStatement();
+				) {
+			String statement = "SELECT BadgeName,BadgeStatus FROM Badge";
+			ResultSet rs= stmt.executeQuery(statement);
+			System.out.println("After undo, Badge in database: ");
+			while (rs.next()) {
+				System.out.println(rs.getString(1)+ ": " + rs.getString(2));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

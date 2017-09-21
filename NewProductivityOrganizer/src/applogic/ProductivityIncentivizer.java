@@ -197,7 +197,7 @@ public class ProductivityIncentivizer {
 
 				Statement stmt = conn.createStatement();
 				) {
-			String getTopTen = "SELECT UserID, ActualName, Point FROM StudentWorkerInformation ORDER BY Point DESC LIMIT 10";
+			String getTopTen = "SELECT UserID, ActualName, Point FROM StudentWorker ORDER BY Point DESC LIMIT 10";
 			ResultSet topTen = stmt.executeQuery(getTopTen);
 			while (topTen.next()){
 				int userID = topTen.getInt(1);

@@ -6,14 +6,18 @@ import java.util.List;
 import org.junit.Test;
 
 import applogic.Badge;
+import applogic.DatabaseBuilder;
 import applogic.ProductivityIncentivizer;
 import applogic.StudentWorkerFuncs;
 import applogic.SupervisorFuncs;
 
 public class TestDatabaseConnection {
+	DatabaseBuilder setup = new DatabaseBuilder();
 
 	@Test
 	public void TestGetBadgeDictionary() {
+		setup.dropDatabase();
+		setup.setupDatabase();
 		SupervisorFuncs test = new SupervisorFuncs(2);
 		HashMap<Integer,Badge> badgeDictionary = test.getBadgeDictionary("Completed");
 		assertTrue(!badgeDictionary.isEmpty());
