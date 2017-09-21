@@ -10,6 +10,11 @@ import org.junit.Test;
 
 import applogic.DatabaseBuilder;
 
+/**
+ * Tests LogInHelper method to make sure it appropriately 
+ * sets usernames and passwords for each user
+ */
+
 public class ProductivityIncentivizerTest {
 	DatabaseBuilder setup = new DatabaseBuilder();
 

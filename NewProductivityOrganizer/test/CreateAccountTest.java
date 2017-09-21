@@ -8,7 +8,6 @@ import applogic.SupervisorAccount;
 /**
  * simple tests to check that create accounts for both student workers and supervisors works
  * checking that the getter methods work
- * @author sophiemittelstadt
  */
 public class CreateAccountTest {
 

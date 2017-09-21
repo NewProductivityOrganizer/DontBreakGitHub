@@ -35,17 +35,24 @@ public class StudentWorkerFuncs {
 			e.printStackTrace();
 		}
 	}*/
+	
 	/**
 	 * method takes in new badge information and call the command to execute to add new badge to database
 	 * @param creatorUserId
 	 * @param BadgeName
 	 * @param BadgeDescription
+	 * @return boolean -- only used for testing
 	 */
-	public void CreateNewBadge(String BadgeName, String BadgeDescription) {
+	public boolean CreateNewBadge(String BadgeName, String BadgeDescription) {
 		BadgeCommand command = new CreateBadgeCommand(BadgeName, BadgeDescription, this);
 		command.execute();
 		commandStack.push(command);
+		if (commandStack.peek().equals(command)) {
+			return true;
+		}
+		return false;
 	}
+	
 	/**
 	 * method call to undo last action
 	 */
@@ -53,13 +60,21 @@ public class StudentWorkerFuncs {
 		BadgeCommand command = commandStack.pop();
 		command.undo();
 	}
+	
 	/**
-	 * method takes in selected uncompleted badge id and call the command to execute to change the badge status in database
+	 * method takes in selected uncompleted badge id and call the command to execute to change 
+	 * the badge status in database
+	 * @param badgeId
+	 * @return boolean -- only used for testing
 	 */
-	public void ApplyBadge(int badgeId) {
+	public boolean ApplyBadge(int badgeId) {
 		BadgeCommand command = new ApplyForBadgeCommand(badgeId, this);
 		command.execute();
 		commandStack.push(command);
+		if (commandStack.peek().equals(command)) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**

@@ -22,12 +22,6 @@ public class AddAccountTest {
 	}
 	
 	@Test
-	public void testSupervisorWithInvalidCodeAccount() {
-		ProductivityIncentivizer testRun = new ProductivityIncentivizer();
-		assertFalse(testRun.addAccount("Fancy Pants", "2", "738", "", ""));
-	}
-	
-	@Test
 	public void testAccountWithInvalidAccountType() {
 		ProductivityIncentivizer testRun = new ProductivityIncentivizer();
 		assertFalse(testRun.addAccount("Funky Friend", "0", "123", "", ""));
